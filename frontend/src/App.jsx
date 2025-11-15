@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import Shop from './components/Shop.jsx'
 import Home from './components/Home.jsx'
-import { Routes, Route } from 'react-router-dom'
 import Dashboard from './components/admin/Dashboard.jsx'
 import { AdminRequireAuth } from './components/admin/AdminRequireAuth.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Product from './components/Product'
+import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+
 
 function App() {
 
@@ -15,13 +18,19 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/shop' element={<Shop />}></Route>
 
+
           <Route path='/admin/dashboard' element={
             <AdminRequireAuth>
               <Dashboard />
             </AdminRequireAuth>
           }></Route>
-        </Routes>
-      </BrowserRouter>
+
+          <Route path='/product' element={<Product />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
+
+        </Routes >
+      </BrowserRouter >
     </>
   )
 }
