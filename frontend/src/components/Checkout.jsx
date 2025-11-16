@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from './common/Layout'
 import { Link } from 'react-router-dom'
-import ProductImg from '../assets/images/mens/seven.jpg'
+import ProductImg from '../assets/images/Mens/Mens/seven.jpg'
 
 const Checkout = () => {
     const [paymentMethod, setPaymentMethod] = useState('cod');
@@ -85,12 +85,12 @@ const Checkout = () => {
                                         <div className='d-flex align-items-center pt-3'>
                                             <span>$10</span>
                                             <div className='ps-3'>
-                                                <button className='btn btn-size '>S</button>  
+                                                <button className='btn btn-size '>S</button>
                                             </div>
                                             <div className='ps-5'>X 1</div>
                                         </div>
                                     </td>
-                                    
+
                                 </tr>
 
                                 <tr>
@@ -102,13 +102,13 @@ const Checkout = () => {
                                         <div className='d-flex align-items-center pt-3'>
                                             <span>$10</span>
                                             <div className='ps-3'>
-                                                <button className='btn btn-size '>S</button>  
+                                                <button className='btn btn-size '>S</button>
                                             </div>
                                             <div className='ps-5'>X 1</div>
                                         </div>
                                     </td>
-                                    
-                                    
+
+
                                 </tr>
                             </tbody>
                         </table>
@@ -130,21 +130,21 @@ const Checkout = () => {
                                     <div>$25</div>
                                 </div>
 
-                                
+
                             </div>
                         </div>
 
                         <h3 className='border-bottom pt-4 pb-3'><strong>Payment Method</strong></h3>
 
                         <div className='pt-2'>
-                            <input type="radio" 
-                            onClick={handlePaymentMethod}
-                            checked={paymentMethod == 'stripe'} value={'stripe'} />
+                            <input type="radio"
+                                onClick={handlePaymentMethod}
+                                checked={paymentMethod == 'stripe'} value={'stripe'} />
                             <label htmlFor="" className='form-label ps-2'>Stripe</label>
 
-                            <input type="radio" 
-                            onClick={handlePaymentMethod}
-                            checked={paymentMethod == 'cod'} value={'cod'} className='ms-3' />
+                            <input type="radio"
+                                onClick={handlePaymentMethod}
+                                checked={paymentMethod == 'cod'} value={'cod'} className='ms-3' />
                             <label htmlFor="" className='form-label ps-2'>COD</label>
                         </div>
 

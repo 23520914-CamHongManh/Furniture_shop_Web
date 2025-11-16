@@ -11,9 +11,9 @@ import 'swiper/css/thumbs';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import ProductImgOne from '../assets/images/mens/five.jpg';
-import ProductImgTwo from '../assets/images/mens/six.jpg';
-import ProductImgThree from '../assets/images/mens/seven.jpg';
+import ProductImgOne from '../assets/images/Mens/Mens/five.jpg';
+import ProductImgTwo from '../assets/images/Mens/Mens/six.jpg';
+import ProductImgThree from '../assets/images/Mens/Mens/seven.jpg';
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -148,8 +148,8 @@ const Product = () => {
                         </div>
 
                         <div>
-                            100% Original Products <br/>
-                            Pay on delivery might be  <br/>
+                            100% Original Products <br />
+                            Pay on delivery might be  <br />
                             Easy 15 days returns and exchanges
                         </div>
 
@@ -182,13 +182,13 @@ const Product = () => {
                             defaultActiveKey="profile"
                             id="uncontrolled-tab-example"
                             className="mb-3"
-                            >
-                                <Tab eventKey="home" title="Description">
-                                    Tab content for Description
-                                </Tab>
-                                <Tab eventKey="profile" title="Reviews (10)">
-                                    Reviews Area
-                                </Tab>
+                        >
+                            <Tab eventKey="home" title="Description">
+                                Tab content for Description
+                            </Tab>
+                            <Tab eventKey="profile" title="Reviews (10)">
+                                Reviews Area
+                            </Tab>
                         </Tabs>
                     </div>
 
