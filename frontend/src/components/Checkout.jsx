@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from './common/Layout'
 import { Link } from 'react-router-dom'
 import ProductImg from '../assets/images/Mens/Mens/seven.jpg'
