@@ -5,3 +5,5 @@ import { Navigate } from "react-router-dom";
 export const AdminRequireAuth = ({ children }) => {
     return children;
 }
+
+export default AdminRequireAuth;
