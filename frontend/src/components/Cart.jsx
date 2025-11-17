@@ -23,7 +23,7 @@ const Cart = () => {
                             <tbody>
                                 <tr>
                                     <td width={100}>
-                                        <img src={Productimg} width={80} alt="" />
+                                        <img src={ProductImg} width={80} alt="" />
                                     </td>
                                     <td width={600}>
                                         <h4>Dummy Product Title</h4>
@@ -46,7 +46,7 @@ const Cart = () => {
 
                                 <tr>
                                     <td width={100}>
-                                        <img src={Productimg} width={80} alt="" />
+                                        <img src={ProductImg} width={80} alt="" />
                                     </td>
                                     <td width={600}>
                                         <h4>Dummy Product Title</h4>

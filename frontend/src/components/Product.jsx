@@ -25,10 +25,10 @@ const Product = () => {
                 <div className='row'>
                     <div className='cod-md-12'>
                         <nav aria-label="breadcrumb" className='py-4'>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                                <li class="breadcrumb-item" aria-current="page"><Link to="/shop">Shop</Link></li>
-                                <li class="breadcrumb-item active" aria-current="page">Dummy Product Title</li>
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                <li className="breadcrumb-item" aria-current="page"><Link to="/shop">Shop</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">Dummy Product Title</li>
                             </ol>
                         </nav>
                     </div>
@@ -93,7 +93,7 @@ const Product = () => {
                                     loop={true}
                                     spaceBetween={0}
                                     navigation={true}
-                                    thumbs={thumbsSwiper ? { swiper, thumbsSwiper } : undefined}
+                                    thumbs={{ swiper: thumbsSwiper }}
                                     modules={[FreeMode, Navigation, Thumbs]}
                                     className="mySwiper2"
                                 >
