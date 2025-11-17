@@ -60,8 +60,7 @@ const Product = () => {
                                                 alt=""
                                                 height={100}
                                                 className='w-100' />
-                                        </
-                                        div>
+                                        </div>
                                     </SwiperSlide>
 
                                     <SwiperSlide>
@@ -71,8 +70,7 @@ const Product = () => {
                                                 alt=""
                                                 height={100}
                                                 className='w-100' />
-                                        </
-                                        div>
+                                        </div>
                                     </SwiperSlide>
 
                                     <SwiperSlide>
@@ -82,8 +80,7 @@ const Product = () => {
                                                 alt=""
                                                 height={100}
                                                 className='w-100' />
-                                        </
-                                        div>
+                                        </div>
                                     </SwiperSlide>
                                 </Swiper>
                             </div>
