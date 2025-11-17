@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@stripe/react-stripe-js": "^5.3.0",
+=======
+>>>>>>> f4166da3f51566c6c36a267f18c08df3e3e2058a
     "bootstrap": "^5.3.8",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
