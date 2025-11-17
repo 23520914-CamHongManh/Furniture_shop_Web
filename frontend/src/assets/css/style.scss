@@ -154,15 +154,14 @@ footer{
 
 .product{
 
-    card-img{
+    .card-img{
     overflow: hidden;
     border-radius: 10px;
-    .card-img{
         img{
             border-radius: 10px;
-            transition: all 0.4s ease-out;
+            transition: all 0.3s ease-out;
         }
-    }
+
     }
     &:hover
     {
