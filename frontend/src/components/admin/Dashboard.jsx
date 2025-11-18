@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Layout from '../common/Layout'
 import Sidebar from '../common/Sidebar'
+import {AdminAuthContext} from '../context/AdminAuth'
+
 
 const Dashboard = () => {
     return (
