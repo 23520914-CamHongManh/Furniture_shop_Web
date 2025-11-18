@@ -7,8 +7,10 @@ import AdminRequireAuth from './components/admin/AdminRequireAuth'
 import Product from './components/Product'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import { default as Login } from './components/admin/Login.jsx'
 import { default as ShowCategories } from './components/admin/category/Show.jsx'
 import { default as CreateCategory } from './components/admin/category/Create.jsx'
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/product' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/admin/login' element={<Login />} />
+
 
           <Route path='/admin/dashboard' element={
             <AdminRequireAuth>
@@ -27,7 +31,7 @@ function App() {
             </AdminRequireAuth>
           } />
 
-
+          
 
           <Route path='/admin/categories' element={
             <AdminRequireAuth>
@@ -43,6 +47,7 @@ function App() {
 
         </Routes >
       </BrowserRouter >
+      <ToastContainer />
     </>
   )
 }
