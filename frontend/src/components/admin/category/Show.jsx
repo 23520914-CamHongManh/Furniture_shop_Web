@@ -11,7 +11,7 @@ const Show = () => {
     const [categories, setCategories] = useState([]);
     const [loader, setLoader] = useState(false);
     const fecthCategories = async () => {
-        setLoader(false);
+        setLoader(true);
         const res = await fetch('${apiUrl}/categories', {
             method: 'GET',
             headers: {
