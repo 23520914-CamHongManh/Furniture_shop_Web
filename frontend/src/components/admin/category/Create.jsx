@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../common/Layout.jsx'
 import Sidebar from '../../common/Sidebar.jsx'
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify'
-import { adminToken } from '../../common/http.jsx';
+import { adminToken, apiUrl } from '../../common/http.jsx';
 
 const Create = () => {
     const [disable, setDisable] = useState(false)
@@ -20,12 +20,12 @@ const Create = () => {
         setDisable(true);
         console.log(data);
 
-        const res = await fetch('${apiUrl}/categories', {
+        const res = await fetch(`${apiUrl}/categories`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ${ adminToken() }'
+                'Authorization': `Bearer ${adminToken()}`
 
             },
             body: JSON.stringify(data)
@@ -33,7 +33,7 @@ const Create = () => {
             .then(result => {
                 setDisable(false);
                 if (result.status == 200) {
-                    toast.success(result.status);
+                    toast.success(result.message);
                     navigate('/admin/categories')
                 }
                 else {
