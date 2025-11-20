@@ -10,6 +10,7 @@ import Checkout from './components/Checkout'
 import { default as Login } from './components/admin/Login.jsx'
 import { default as ShowCategories } from './components/admin/category/Show.jsx'
 import { default as CreateCategory } from './components/admin/category/Create.jsx'
+import { default as EditCategory } from './components/admin/category/Edit.jsx'
 import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
             </AdminRequireAuth>
           } />
 
-          
+
 
           <Route path='/admin/categories' element={
             <AdminRequireAuth>
@@ -42,6 +43,12 @@ function App() {
           <Route path='/admin/categories/create' element={
             <AdminRequireAuth>
               <CreateCategory />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/categories/edit/:id' element={
+            <AdminRequireAuth>
+              <EditCategory />
             </AdminRequireAuth>
           } />
 
