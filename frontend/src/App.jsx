@@ -13,6 +13,10 @@ import { default as CreateCategory } from './components/admin/category/Create.js
 import { default as EditCategory } from './components/admin/category/Edit.jsx'
 import { ToastContainer, toast } from 'react-toastify';
 
+import { default as ShowBrand } from './components/admin/brand/Show.jsx'
+import { default as CreateBrand } from './components/admin/brand/Create.jsx'
+import { default as EditBrand } from './components/admin/brand/Edit.jsx'
+
 function App() {
   return (
     <>
@@ -49,6 +53,24 @@ function App() {
           <Route path='/admin/categories/edit/:id' element={
             <AdminRequireAuth>
               <EditCategory />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/brands' element={
+            <AdminRequireAuth>
+              <ShowBrand/>
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/brands/create' element={
+            <AdminRequireAuth>
+              <CreateBrand/>
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/brands/edit/:id' element={
+            <AdminRequireAuth>
+              <EditBrand/>
             </AdminRequireAuth>
           } />
 

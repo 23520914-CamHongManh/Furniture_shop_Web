@@ -16,6 +16,7 @@ const Sidebar = () => {
                         <Link to="/admin/categories">Categories</Link>
                     </li>
                     <li>
+                        <Link to='/admin/brands'>Brands</Link>
                         <a href="">Brands</a>
                     </li>
                     <li>
