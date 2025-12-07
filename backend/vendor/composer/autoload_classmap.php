@@ -7,8 +7,17 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\admin\\AuthController' => $baseDir . '/app/Http/Controllers/admin/AuthController.php',
     'App\\Http\\Controllers\\admin\\CategoryController' => $baseDir . '/app/Http/Controllers/admin/CategoryController.php',
+    'App\\Http\\Controllers\\admin\\ProductController' => $baseDir . '/app/Http/Controllers/admin/ProductController.php',
+    'App\\Http\\Controllers\\admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/admin/RoomTypeController.php',
+    'App\\Http\\Controllers\\admin\\TempImageController' => $baseDir . '/app/Http/Controllers/admin/TempImageController.php',
+    'App\\Http\\Controllers\\front\\ProductController' => $baseDir . '/app/Http/Controllers/front/ProductController.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+    'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
+    'App\\Models\\ProductImage' => $baseDir . '/app/Models/ProductImage.php',
+    'App\\Models\\RoomType' => $baseDir . '/app/Models/RoomType.php',
+    'App\\Models\\TempImage' => $baseDir . '/app/Models/TempImage.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

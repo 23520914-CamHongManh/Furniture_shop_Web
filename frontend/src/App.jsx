@@ -13,9 +13,9 @@ import { default as CreateCategory } from './components/admin/category/Create.js
 import { default as EditCategory } from './components/admin/category/Edit.jsx'
 import { ToastContainer, toast } from 'react-toastify';
 
-import { default as ShowBrand } from './components/admin/brand/Show.jsx'
-import { default as CreateBrand } from './components/admin/brand/Create.jsx'
-import { default as EditBrand } from './components/admin/brand/Edit.jsx'
+import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
+import { default as CreateRoomType } from './components/admin/roomtype/Create.jsx'
+import { default as EditRoomType } from './components/admin/roomtype/Edit.jsx'
 
 function App() {
   return (
@@ -56,21 +56,21 @@ function App() {
             </AdminRequireAuth>
           } />
 
-          <Route path='/admin/brands' element={
+          <Route path='/admin/roomtypes' element={
             <AdminRequireAuth>
-              <ShowBrand/>
+              <ShowRoomTypes />
             </AdminRequireAuth>
           } />
 
-          <Route path='/admin/brands/create' element={
+          <Route path='/admin/roomtypes/create' element={
             <AdminRequireAuth>
-              <CreateBrand/>
+              <CreateRoomType />
             </AdminRequireAuth>
           } />
 
-          <Route path='/admin/brands/edit/:id' element={
+          <Route path='/admin/roomtypes/edit/:id' element={
             <AdminRequireAuth>
-              <EditBrand/>
+              <EditRoomType />
             </AdminRequireAuth>
           } />
 

@@ -545,8 +545,17 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AuthController.php',
         'App\\Http\\Controllers\\admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/CategoryController.php',
+        'App\\Http\\Controllers\\admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ProductController.php',
+        'App\\Http\\Controllers\\admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/RoomTypeController.php',
+        'App\\Http\\Controllers\\admin\\TempImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/TempImageController.php',
+        'App\\Http\\Controllers\\front\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/front/ProductController.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
+        'App\\Models\\ProductImage' => __DIR__ . '/../..' . '/app/Models/ProductImage.php',
+        'App\\Models\\RoomType' => __DIR__ . '/../..' . '/app/Models/RoomType.php',
+        'App\\Models\\TempImage' => __DIR__ . '/../..' . '/app/Models/TempImage.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

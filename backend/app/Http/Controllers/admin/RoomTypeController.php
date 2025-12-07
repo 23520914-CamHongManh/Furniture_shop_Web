@@ -4,22 +4,23 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\RoomType;
 use Illuminate\Support\Facades\Validator;
 
-class BrandController extends Controller
+
+class RoomTypeController extends Controller
 {
-    //This method will return all brands
+    //This method will return all room types
     public function index()
     {
-        $brands = Brand::orderBy('created_at', 'desc')->get();
+        $room_types = RoomType::orderBy('created_at', 'desc')->get();
         return response()->json([
             'status' => 200,
-            'data' => $brands
+            'data' => $room_types
         ]);
     }
 
-    //This method will store a brand in db
+    //This method will store a roomtype in db
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -31,47 +32,47 @@ class BrandController extends Controller
                 'errors' => $validator->errors()
             ], 400);
         }
-        $brand = new Brand();
-        $brand->name = $request->name;
-        $brand->status = $request->status;
-        $brand->save();
+        $room_type = new RoomType();
+        $room_type->name = $request->name;
+        $room_type->status = $request->status;
+        $room_type->save();
 
         return response()->json([
             'status' => 200,
-            'message' => 'Brand added successfully',
-            'data' => $brand
+            'message' => 'RoomType added successfully',
+            'data' => $room_type
         ], 200);
     }
 
-    //This method will return a single brand
+    //This method will return a single room type
     public function show($id)
     {
-        $brands = Brand::find($id);
+        $room_types = RoomType::find($id);
 
-        if ($brands == null) {
+        if ($room_types == null) {
             return response()->json([
                 'status' => 404,
-                'message' => 'Brand not found',
+                'message' => 'RoomType not found',
                 'data' => []
             ], 404);
         }
 
         return response()->json([
             'status' => 200,
-            'data' => $brands
+            'data' => $room_types
         ]);
     }
 
 
-    //This method will update a single brand
+    //This method will update a single room type
     public function update($id, Request $request)
     {
-        $brand = Brand::find($id);
+        $room_type = RoomType::find($id);
 
-        if ($brand == null) {
+        if ($room_type == null) {
             return response()->json([
                 'status' => 404,
-                'message' => 'Brand not found',
+                'message' => 'RoomType not found',
                 'data' => []
             ], 404);
         }
@@ -86,36 +87,36 @@ class BrandController extends Controller
             ], 400);
         }
 
-        $brand->name = $request->name;
-        $brand->status = $request->status;
-        $brand->save();
+        $room_type->name = $request->name;
+        $room_type->status = $request->status;
+        $room_type->save();
 
         return response()->json([
             'status' => 200,
-            'message' => 'Brand updated successfully',
-            'data' => $brand
+            'message' => 'RoomType updated successfully',
+            'data' => $room_type
         ], 200);
     }
 
 
-    //This method will destroy a single brand
+    //This method will destroy a single roomtype
     public function destroy($id)
     {
-        $brand = Brand::find($id);
+        $room_type = RoomType::find($id);
 
-        if ($brand == null) {
+        if ($room_type == null) {
             return response()->json([
                 'status' => 404,
-                'message' => 'Brand not found',
+                'message' => 'RoomType not found',
                 'data' => []
             ], 404);
         }
 
-        $brand->delete();
+        $room_type->delete();
 
         return response()->json([
             'status' => 200,
-            'message' => 'Brand deleted successfully'
+            'message' => 'RoomType deleted successfully'
         ], 200);
     }
 }
