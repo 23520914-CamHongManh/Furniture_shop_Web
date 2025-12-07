@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from 'react'
 import Layout from "../common/Layout.jsx";
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { apiUrl } from "../common/http.jsx";
 import { toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
-import { useContext } from "react";
-import { AdminAuthContext } from "../context/AdminAuth.jsx";
+import { AdminAuthContext } from '../context/AdminAuth.jsx';
 
 const Login = () => {
     const {login} = useContext(AdminAuthContext);
@@ -103,4 +102,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default Login
