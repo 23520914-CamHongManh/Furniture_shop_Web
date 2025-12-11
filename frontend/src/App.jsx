@@ -14,13 +14,13 @@ import { default as ShowCategories } from './components/admin/category/Show.jsx'
 import { default as CreateCategory } from './components/admin/category/Create.jsx'
 import { default as EditCategory } from './components/admin/category/Edit.jsx'
 
-import { default as ShowBrands } from './components/admin/brand/Show'
-import { default as CreateBrand } from './components/admin/brand/Create'
-import { default as EditBrand } from './components/admin/brand/Edit'
+// import { default as ShowBrands } from './components/admin/brand/Show'
+// import { default as CreateBrand } from './components/admin/brand/Create'
+// import { default as EditBrand } from './components/admin/brand/Edit'
 
-import { default as ShowProducts } from './components/admin/product/Show'
-import { default as CreateProduct } from './components/admin/product/Create'
-import { default as EditProduct } from './components/admin/product/Edit'
+// import { default as ShowProducts } from './components/admin/product/Show'
+// import { default as CreateProduct } from './components/admin/product/Create'
+// import { default as EditProduct } from './components/admin/product/Edit'
 import Register from './components/Register'
 import { default as UserLogin } from './components/Login'
 import Profile from './components/Profile'
@@ -52,7 +52,7 @@ function App() {
               <Profile />
             </RequireAuth>
           } />
-          
+
           {/* Admin Routes */}
           <Route path='/admin/dashboard' element={
             <AdminRequireAuth>
@@ -98,8 +98,8 @@ function App() {
             </AdminRequireAuth>
           } />
 
-        </Routes >
-      </BrowserRouter >
+        </Routes>
+      </BrowserRouter>
       <ToastContainer />
     </>
   )
