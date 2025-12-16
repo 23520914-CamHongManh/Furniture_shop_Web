@@ -31,6 +31,10 @@ import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
 import { default as CreateRoomType } from './components/admin/roomtype/Create.jsx'
 import { default as EditRoomType } from './components/admin/roomtype/Edit.jsx'
 
+import { default as ShowProducts } from './components/admin/product/Show.jsx'
+import { default as CreateProduct } from './components/admin/product/Create.jsx'
+import { default as EditProduct } from './components/admin/product/Edit.jsx'
+
 function App() {
 
   return (
@@ -95,6 +99,24 @@ function App() {
           <Route path='/admin/roomtypes/edit/:id' element={
             <AdminRequireAuth>
               <EditRoomType />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products' element={
+            <AdminRequireAuth>
+              <ShowProducts />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products/create' element={
+            <AdminRequireAuth>
+              <CreateProduct />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products/edit/:id' element={
+            <AdminRequireAuth>
+              <EditProduct />
             </AdminRequireAuth>
           } />
 
