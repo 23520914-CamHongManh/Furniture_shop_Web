@@ -36,6 +36,11 @@ import Shipping from './components/admin/shipping/Shipping'
 import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
 import { default as CreateRoomType } from './components/admin/roomtype/Create.jsx'
 import { default as EditRoomType } from './components/admin/roomtype/Edit.jsx'
+import Confirmation from './components/Confirmation.jsx'
+
+import { default as ShowProducts } from './components/admin/product/Show.jsx'
+import { default as CreateProduct } from './components/admin/product/Create.jsx'
+import { default as EditProduct } from './components/admin/product/Edit.jsx'
 
 function App() {
 
@@ -48,7 +53,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<Checkout />} />
+          {/* <Route path='/checkout' element={<Checkout />} /> */}
           <Route path='/account/register' element={<Register />} />
           <Route path='/account/login' element={<UserLogin />} />
           <Route path='/admin/login' element={<Login />} />
@@ -56,6 +61,19 @@ function App() {
           <Route path='/account' element={
             <RequireAuth>
               <Profile />
+            </RequireAuth>
+          } />
+
+          <Route path='/checkout' element={
+            <RequireAuth>
+              <Checkout />
+            </RequireAuth>
+          } />
+
+
+          <Route path='/order/confirmation/:id' element={
+            <RequireAuth>
+              <Confirmation />
             </RequireAuth>
           } />
 
@@ -110,7 +128,9 @@ function App() {
             </AdminRequireAuth>
           } />
 
-          <Route path='/admin/products/edit/create' element={
+
+
+          <Route path='/admin/products/create' element={
             <AdminRequireAuth>
               <CreateProduct />
             </AdminRequireAuth>

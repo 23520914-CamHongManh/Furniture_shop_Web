@@ -20,13 +20,14 @@ Route::post('/admin/login', [AuthController::class, 'authenticate']);
 Route::get('get-latest-products', [FrontProductController::class, 'latestProducts']);
 Route::get('get-featured-products', [FrontProductController::class, 'featuredProducts']);
 Route::get('get-categories', [FrontProductController::class, 'getCategories']);
-// Route::get('get-brands', [FrontProductController::class, 'getBrands']);
+Route::get('get-roomtypes', [FrontProductController::class, 'getRoomTypes']);
 Route::get('get-products', [FrontProductController::class, 'getProducts']);
 Route::get('get-product/{id}', [FrontProductController::class, 'getProduct']);
 Route::post('register', [AccountController::class, 'register']);
 Route::post('login', [AccountController::class, 'authenticate']);
 Route::get('get-shipping-front', [FrontShippingController::class, 'getShipping']);
 
+<<<<<<< HEAD
 Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function() {
     Route::post('save-order', [OrderController::class, 'saveOrder']);
     Route::get('get-order-details/{id}', [AccountController::class, 'getOrderDetails']);
@@ -62,6 +63,13 @@ Route::group(['middleware' => ['auth:sanctum', 'checkAdminRole']], function() {
     Route::get('get-shipping', [ShippingController::class, 'getShipping']);
     Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
 });
+=======
+// Route::group(['middleware' => 'auth:sanctum'], function () {
+//     Route::post('save-order', [OrderController::class, 'saveOrder']);
+// });
+
+
+>>>>>>> dc20af48ea1e44491ad9ed3a73d26b6ab8a48b27
 
 Route::get('/user', function (Request $request) {
     return $request->user();
