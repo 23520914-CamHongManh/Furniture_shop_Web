@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     //
-}
-    public function items() {
+
+    public function items()
+    {
         return $this->hasMany(OrderItem::class);
     }
 
