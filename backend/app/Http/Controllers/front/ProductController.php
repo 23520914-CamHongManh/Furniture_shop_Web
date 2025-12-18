@@ -23,7 +23,7 @@ class ProductController extends Controller
             $products = $products->whereIn('category_id', $catArray);
         }
 
-        // Filter Products by brand
+        // Filter Products by room type
         if (!empty($request->roomtype)) {
             $roomtypeArray = explode(',', $request->roomtype);
             $products = $products->whereIn('room_type_id', $roomtypeArray);
@@ -83,6 +83,23 @@ class ProductController extends Controller
         return response()->json([
             'status' => 200,
             'data' => $roomtypes
+        ], 200);
+    }
+
+    public function getProduct($id)
+    {
+        $product = Product::with('product_images')->find($id);
+
+        if ($product === null) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Product not found',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'data' => $product,
         ], 200);
     }
 }
