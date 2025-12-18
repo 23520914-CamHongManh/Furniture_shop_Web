@@ -27,7 +27,6 @@ Route::post('register', [AccountController::class, 'register']);
 Route::post('login', [AccountController::class, 'authenticate']);
 Route::get('get-shipping-front', [FrontShippingController::class, 'getShipping']);
 
-<<<<<<< HEAD
 Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function() {
     Route::post('save-order', [OrderController::class, 'saveOrder']);
     Route::get('get-order-details/{id}', [AccountController::class, 'getOrderDetails']);
@@ -36,40 +35,11 @@ Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function() {
     Route::get('get-profile-details', [AccountController::class, 'getAccountDetails']);
 });
 
-// Route::get('/user', function (Request $request) {
-//      return $request->user();
-// })->middleware('auth:sanctum');
 
-Route::group(['middleware' => ['auth:sanctum', 'checkAdminRole']], function() {
-    //Route::get('categories', [CategoryController::class, 'index']);
-    //Route::get('categories/{id}', [CategoryController::class, 'show']);
-    //Route::put('categories/{id}', [CategoryController::class, 'update']);
-    //Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
-    //Route::post('categories', [CategoryController::class, 'store']);
-
-    Route::resource('categories', CategoryController::class);
-    Route::resource('brands', BrandController::class);
-    Route::get('sizes', [SizeController::class, 'index']);
-    Route::resource('products', ProductController::class);
-    Route::post('temp-images', [TempImageController::class, 'store']);
-    Route::post('save-product-image', [ProductController::class, 'saveProductImage']);
-    Route::get('change-product-default-image', [ProductController::class, 'updateDefaultImage']);
-    Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
-
-    Route::get('orders', [AdminOrderController::class, 'index']);
-    Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
-    Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
-
-    Route::get('get-shipping', [ShippingController::class, 'getShipping']);
-    Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
-});
-=======
 // Route::group(['middleware' => 'auth:sanctum'], function () {
 //     Route::post('save-order', [OrderController::class, 'saveOrder']);
 // });
 
-
->>>>>>> dc20af48ea1e44491ad9ed3a73d26b6ab8a48b27
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -86,4 +56,15 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('roomtypes', RoomTypeController::class);
     Route::resource('products', ProductController::class);
     Route::post('temp-images', [TempImageController::class, 'store']);
+
+    Route::post('save-product-image', [ProductController::class, 'saveProductImage']);
+    Route::get('change-product-default-image', [ProductController::class, 'updateDefaultImage']);
+    Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+
+    Route::get('orders', [AdminOrderController::class, 'index']);
+    Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
+    Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
+
+    Route::get('get-shipping', [ShippingController::class, 'getShipping']);
+    Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
 });
