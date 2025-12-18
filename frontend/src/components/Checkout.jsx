@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Layout from './common/Layout'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProductImg from '../assets/images/Mens/Mens/seven.jpg'
+import { CartContext } from './context/Cart'
 import { useForm } from 'react-hook-form'
 import { apiUrl, userToken } from './common/http'
+import { toast } from 'react-toastify'
 const Checkout = () => {
     const [paymentMethod, setPaymentMethod] = useState('cod');
-    const { cartData, grandTotal, subTotal, shipping } = useContext(CartContext)
+    const { cartData, grandTotal, subTotal, shipping } = useContext(CartContext);
     const navigate = useNavigate();
 
     const handlePaymentMethod = (e) => {
@@ -17,12 +19,36 @@ const Checkout = () => {
         register,
         handleSubmit,
         watch,
+        reset,
         setError,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues: async () => {
+            fetch(`${apiUrl}/get-profile-details`, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${userToken()}`
+                }
+            })
+                .then(res => res.json())
+                .then(result => {
+                    reset({
+                        name: result.data.name,
+                        email: result.data.email,
+                        phone: result.data.phone,
+                        address: result.data.address,
+                        city: result.data.city,
+                        state: result.data.state,
+                        zip: result.data.zip,
+                        mobile: result.data.mobile
+                    })
+                })
+        }
+    });
 
     const processOrder = (data) => {
-        console.log(data)
         if (paymentMethod == 'cod') {
             saveOrder(data, 'not paid')
         }
@@ -32,7 +58,6 @@ const Checkout = () => {
         //console.log(cartData)
         const newFormData = {
             ...formData,
-
             grand_total: grandTotal(),
             sub_total: subTotal(),
             shipping: shipping(),
@@ -59,10 +84,8 @@ const Checkout = () => {
                 } else {
                     toast.error(result.message)
                 }
-                console.log(result);
             })
     }
-
 
     return (
         <Layout>
