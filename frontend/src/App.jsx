@@ -23,7 +23,7 @@ import { default as EditCategory } from './components/admin/category/Edit.jsx'
 // import { default as EditProduct } from './components/admin/product/Edit'
 import Register from './components/Register'
 import { default as UserLogin } from './components/Login'
-import Profile from './components/Profile'
+import Profile from './components/front/Profile'
 import { RequireAuth } from './components/RequireAuth'
 import Confirmation from './components/Confirmation'
 import ShowOrders from './components/admin/orders/ShowOrders'
@@ -64,6 +64,12 @@ function App() {
             </RequireAuth>
           } />
 
+          <Route path='/account/orders' element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          } />
+
           <Route path='/checkout' element={
             <RequireAuth>
               <Checkout />
@@ -77,14 +83,18 @@ function App() {
             </RequireAuth>
           } />
 
+          <Route path='/account/orders/details:/id' element={
+            <RequireAuth>
+              <UserOrderDetail/>
+            </RequireAuth>
+          } />
+
           {/* Admin Routes */}
           <Route path='/admin/dashboard' element={
             <AdminRequireAuth>
               <Dashboard />
             </AdminRequireAuth>
           } />
-
-
 
           <Route path='/admin/categories' element={
             <AdminRequireAuth>
