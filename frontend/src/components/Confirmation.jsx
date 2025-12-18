@@ -149,3 +149,4 @@ const Confirmation = () => {
         </Layout>
     )
 }
+export default Confirmation

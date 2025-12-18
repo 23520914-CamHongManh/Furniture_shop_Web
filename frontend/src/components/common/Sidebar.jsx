@@ -19,6 +19,7 @@ const Sidebar = () => {
                         <Link to='/admin/roomtypes'>Room Types</Link>
                     </li>
                     <li>
+<<<<<<< HEAD
                         {/* <a href="">Products</a> */}
                         <Link to="/admin/products">Products</Link>
                     </li>
@@ -27,6 +28,9 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <a href="">Products</a>
+=======
+                        <Link to='/admin/products'>Products</Link>
+>>>>>>> dc20af48ea1e44491ad9ed3a73d26b6ab8a48b27
                     </li>
                     <li>
                         <a href="">Orders</a>
