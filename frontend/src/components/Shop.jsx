@@ -2,22 +2,22 @@ import React from 'react'
 import Layout from './common/Layout'
 import Hero from './common/Hero'
 import ProductImg from '../assets/images/eight.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { apiUrl } from '../components/common/http'
 
 const Shop = () => {
 
   const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
+  const [roomTypes, setRoomTypes] = useState([]);
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [catChecked, setCatChecked] = useState(() => {
     const category = searchParams.get('category');
     return category ? category.split(',') : [];
   });
-  const [brandChecked, setBrandChecked] = useState(() => {
-    const brand = searchParams.get('brand');
-    return brand ? brand.split(',') : [];
+  const [roomTypeChecked, setRoomTypeChecked] = useState(() => {
+    const roomType = searchParams.get('roomType');
+    return roomType ? roomType.split(',') : [];
   });
 
   const fetchProducts = () => {
@@ -28,8 +28,8 @@ const Shop = () => {
       search.push(['category', catChecked])
     }
 
-    if (brandChecked.length > 0) {
-      search.push(['brand', brandChecked])
+    if (roomTypeChecked.length > 0) {
+      search.push(['roomType', roomTypeChecked])
     }
 
     if (search.length > 0) {
@@ -75,8 +75,8 @@ const Shop = () => {
       })
   }
 
-  const fetchBrands = () => {
-    fetch(`${apiUrl}/get-brands`, {
+  const fetchRoomTypes = () => {
+    fetch(`${apiUrl}/get-roomtypes`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -102,20 +102,20 @@ const Shop = () => {
     }
   }
 
-  const handleBrand = (e) => {
+  const handleRoomType = (e) => {
     const { checked, value } = e.target;
     if (checked) {
-      setBrandChecked(pre => [...pre, value])
+      setRoomTypeChecked(pre => [...pre, value])
     } else {
-      setBrandChecked(brandChecked.filter(id => id != value))
+      setRoomTypeChecked(roomTypeChecked.filter(id => id != value))
     }
   }
 
   useEffect(() => {
     fetchCategories()
-    fetchBrands()
+    fetchRoomTypes()
     fetchProducts()
-  }, [catChecked, brandChecked])
+  }, [catChecked, roomTypeChecked])
 
   return (
     <Layout>
@@ -160,21 +160,21 @@ const Shop = () => {
             </div>
             <div className='card shadow border-0 mb-3'>
               <div className='card-body p-4'>
-                <h3>Brands</h3>
+                <h3>Room Types</h3>
                 <ul>
                   {
-                    brands && brands.map(brand => {
+                    roomTypes && roomTypes.map(roomType => {
                       return (
-                        <li key={`brand-${brand.id}`} className='mb-2'>
+                        <li key={`roomType-${roomType.id}`} className='mb-2'>
                           <input
-                            defaultChecked={searchParams.get('brand')
-                              ? searchParams.get('brand').includes(brand.id)
+                            defaultChecked={searchParams.get('roomType')
+                              ? searchParams.get('roomType').includes(roomType.id)
                               : false}
                             type="checkbox"
-                            value={brand.id}
-                            onClick={handleBrand}
+                            value={roomType.id}
+                            onClick={handleRoomType}
                           />
-                          <label htmlFor="" className='ps-2'>{brand.name}</label>
+                          <label htmlFor="" className='ps-2'>{roomType.name}</label>
                         </li>
                       )
                     })
@@ -192,12 +192,12 @@ const Shop = () => {
                     <div className='col-md-4 col-6' key={`product-${product.id}`}>
                       <div className='product card border-0'>
                         <div className='card-img'>
-                          <Link to="/product">
+                          <Link to={`/product/${product.id}`}>
                             <img src={product.image_url} alt="" className='w-100' />
                           </Link>
                         </div>
                         <div className='card-body pt-3'>
-                          <Link to="/product">{product.title}</Link>
+                          <Link to={`/product/${product.id}`}>{product.title}</Link>
                           <div className='price'>
                             ${product.price} &nbsp;
 

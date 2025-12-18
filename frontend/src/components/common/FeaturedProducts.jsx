@@ -38,12 +38,12 @@ const FeaturedProducts = () => {
                 <div className='col-md-3 col-6' key={`product-${product.id}`}>
                   <div className='product card border-0'>
                     <div className='card-img'>
-                      <img src={product.image_url} alt="" className='w-100' />
+                      <Link to={`/product/${product.id}`}> <img src={product.image_url} alt="" className='w-100' /> </Link>
                     </div>
                     <div className='card-body pt-3'>
-                      <a href="">
+                      <Link to={`/product/${product.id}`}>
                         {product.title}
-                      </a>
+                      </Link>
                       <div className='price'>
                         ${product.price} &nbsp;
 

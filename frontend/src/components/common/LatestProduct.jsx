@@ -3,6 +3,8 @@ import ProductImg1 from '../../assets/images/eight.jpg'
 import ProductImg2 from '../../assets/images/ten.jpg'
 import { apiUrl } from '../common/http'
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+
 
 const LatestProduct = () => {
 
@@ -39,17 +41,23 @@ const LatestProduct = () => {
                 <div className='col-md-3 col-6' key={`product-${product.id}`}>
                   <div className='product card border-0'>
                     <div className='card-img'>
-                      <img src={product.image_url} alt='Product1' className='w-100' />
+                      <Link to={`/product/${product.id}`}> {product.image_url && (
+                        <img
+                          src={product.image_url}
+                          alt={product.title}
+                          className='w-100'
+                        />
+                      )} </Link>
                     </div>
                     <div className='card-body pt-3'>
-                      <a href="">
+                      <Link to={`/product/${product.id}`}>
                         {product.title}
-                      </a>
+                      </Link>
                       <div className='price'>
                         ${product.price} &nbsp;
 
                         {
-                          product.compare_price && <span className='text-decoration-line-through'>&{product.compare_price}</span>
+                          product.compare_price && <span className='text-decoration-line-through'>${product.compare_price}</span>
                         }
 
                       </div>
