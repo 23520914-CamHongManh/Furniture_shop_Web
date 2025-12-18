@@ -19,6 +19,13 @@ const Sidebar = () => {
                         <Link to='/admin/roomtypes'>Room Types</Link>
                     </li>
                     <li>
+                        {/* <a href="">Products</a> */}
+                        <Link to="/admin/products">Products</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/orders">Orders</Link>
+                    </li>
+                    <li>
                         <a href="">Products</a>
                     </li>
                     <li>
@@ -26,6 +33,9 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <a href="">Users</a>
+                    </li>
+                    <li>
+                        <Link to="/admin/shipping">Shipping</Link>
                     </li>
                     <li>
                         <a href="">Change Password</a>

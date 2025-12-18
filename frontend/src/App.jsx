@@ -25,7 +25,13 @@ import Register from './components/Register'
 import { default as UserLogin } from './components/Login'
 import Profile from './components/Profile'
 import { RequireAuth } from './components/RequireAuth'
+import Confirmation from './components/Confirmation'
+import ShowOrders from './components/admin/orders/ShowOrders'
+import OrderDetail from './components/admin/orders/OrderDetail'
 
+import MyOrders from './components/front/MyOrders'
+import { default as UserOrderDetail } from './components/front/OrderDetail'
+import Shipping from './components/admin/shipping/Shipping'
 
 import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
 import { default as CreateRoomType } from './components/admin/roomtype/Create.jsx'
@@ -95,6 +101,42 @@ function App() {
           <Route path='/admin/roomtypes/edit/:id' element={
             <AdminRequireAuth>
               <EditRoomType />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products' element={
+            <AdminRequireAuth>
+              <ShowProducts />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products/edit/create' element={
+            <AdminRequireAuth>
+              <CreateProduct />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/products/edit/:id' element={
+            <AdminRequireAuth>
+              <EditProduct />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='admin/orders' element={
+            <AdminRequireAuth>
+              <ShowOrders/>
+            </AdminRequireAuth>
+          } />
+
+          <Route path='admin/orders/:id' element={
+            <AdminRequireAuth>
+              <OrderDetail />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/shipping' element={
+            <AdminRequireAuth>
+              <Shipping />
             </AdminRequireAuth>
           } />
 
