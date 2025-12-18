@@ -17,7 +17,7 @@ class ProductController extends Controller
     // This method will return all the products
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->with('product_images')->get();
         return response()->json([
             'status' => 200,
             'data' => $products,
@@ -100,7 +100,7 @@ class ProductController extends Controller
     // This method will return a single  product
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('product_images')->find($id);
 
         if ($product === null) {
             return response()->json([

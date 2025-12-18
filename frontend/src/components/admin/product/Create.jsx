@@ -125,6 +125,7 @@ const Create = ({ placeholder }) => {
         const newGallery = galleryImages.filter(gallery => gallery != image);
         setGalleryImages(newGallery);
     }
+
     useEffect(() => {
         fetchCategories();
         fetchRoomTypes();
@@ -194,7 +195,7 @@ const Create = ({ placeholder }) => {
                                                 <label className='form-label' htmlFor="" >RoomType</label>
                                                 <select 
                                                     {
-                                                        ...register('roomtype')
+                                                        ...register('room_type')
                                                     } 
                                                 className='form-control'>
                                                     <option value="">Select a RoomType</option>

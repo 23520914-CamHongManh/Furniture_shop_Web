@@ -9,6 +9,7 @@ use App\Http\Controllers\front\AccountController;
 use App\Http\Controllers\front\ProductController as FrontProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\front\OrderController;
 
 Route::post('/admin/login', [AuthController::class, 'authenticate']);
 Route::get('get-latest-products', [FrontProductController::class, 'latestProducts']);
