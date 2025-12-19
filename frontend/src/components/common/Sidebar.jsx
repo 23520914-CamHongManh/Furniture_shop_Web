@@ -26,12 +26,6 @@ const Sidebar = () => {
                         <Link to="/admin/orders">Orders</Link>
                     </li>
                     <li>
-                        <a href="">Products</a>
-                    </li>
-                    <li>
-                        <a href="">Orders</a>
-                    </li>
-                    <li>
                         <a href="">Users</a>
                     </li>
                     <li>
