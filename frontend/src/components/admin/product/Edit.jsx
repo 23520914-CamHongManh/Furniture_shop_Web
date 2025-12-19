@@ -20,8 +20,9 @@ const Edit = ({placeholder}) => {
     const [disable, setDisable] = useState(false)
     const [categories, setCategories] = useState([])
     const [roomtypes, setRoomTypes] = useState([])
-    const [gallery, setGallery] = useState([])
-    const [galleryImages, setGalleryImages] = useState([])
+    //const [gallery, setGallery] = useState([])
+    const [productImages, setProductImages] = useState([])
+    // const [galleryImages, setGalleryImages] = useState([])
     const navigate = useNavigate();
     const params = useParams();
 
@@ -50,6 +51,7 @@ const Edit = ({placeholder}) => {
             })
             .then(res => res.json())
             .then(result => {
+                setProductImages(result.data.product_images);
                 reset({
                     title: result.data.title,
                     category: result.data.category_id,
@@ -70,12 +72,12 @@ const Edit = ({placeholder}) => {
     });
 
     const saveProduct = async (data) => {
-        const formData = { ...data, "description": content, "gallery": gallery };
+        const formData = { ...data, "description": content };
         setDisable(true);
         console.log(formData);
 
-        const res = await fetch(`${apiUrl}/products`, {
-            method: 'POST',
+        const res = await fetch(`${apiUrl}/products/${params.id}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -136,9 +138,10 @@ const Edit = ({placeholder}) => {
     const handleFile = async(e) => {
         const formData = new FormData();
         const file = e.target.files[0];
+        formData.append("product_id", params.id);
         formData.append("image", file);
         setDisable(true);
-        const res = await fetch(`${apiUrl}/temp-images`, {
+        const res = await fetch(`${apiUrl}/save-product-images`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -149,14 +152,61 @@ const Edit = ({placeholder}) => {
         })
         .then(res => res.json())
         .then(result => {
-            gallery.push(result.data.id);
-            setGallery(gallery);
-
-            galleryImages.push(result.data.image_url);
-            setGalleryImages(galleryImages);
+            if(result.status == 200){
+                productImages.push(result.data);
+                setProductImages(productImages);
+            }
+            else{
+                toast.error(result.errors.image[0]);
+            }
             setDisable(false);
             e.target.value = ""
         })
+    }
+
+    const changeImage = async(image) => {
+        const res = await fetch(`${apiUrl}/change-product-default-images?product_id=${params.id}&image=${image}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${adminToken()}`
+
+            },
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result.status == 200){
+                toast.success(result.message);
+            }   
+            else{
+                console.log("Something went wrong")
+            }
+        })
+    }
+
+    const deleteImage = async(id) => {
+        if(confirm("Are you sure to delete this image?")){
+            const res = await fetch(`${apiUrl}/delete-product-image/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${adminToken()}`
+                }
+            })
+            .then(res => res.json())
+            .then(result => {
+                if(result.status == 200){
+                    const newProductImages = productImages.filter(productImage => productImage.id != id);
+                    setProductImages(newProductImages);
+                    toast.success(result.message);
+                }   
+                else{
+                    toast.error(result.message);
+                }
+            })
+        }
     }
 
     useEffect(() => {
@@ -393,13 +443,15 @@ const Edit = ({placeholder}) => {
                                     <div className='mb-3'>
                                         <div className='row'>
                                             {
-                                                galleryImages && galleryImages.map((image, index) => {
+                                                productImages && productImages.map((productImage, index) => {
                                                     return (
                                                         <div className='col-md-3' key={`image-${index}`}>
                                                             <div className='card shadow'>
-                                                                <img src={image} alt=""className='w-100'/>
-                                                                <button className='btn btn-danger' onClick={() => deleteImage(image)}>Delete</button>
+                                                                <img src={productImage.image_url} alt=""className='w-100'/>
+                                                                
                                                             </div>
+                                                            <button type='button' className='btn btn-danger mt-3 w-100' onClick={() => deleteImage(productImage.id)}>Delete</button>
+                                                            <button type='button' className='btn btn-secondary mt-3 w-100' onClick={() => changeImage(productImage.image)}>Set as Default</button>
                                                         </div>
                                                     )
                                                 })

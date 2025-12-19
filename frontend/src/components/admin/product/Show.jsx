@@ -1,15 +1,40 @@
-import React from 'react'
-import Layout from '../../common/Layout.jsx'
-import Sidebar from '../../common/Sidebar.jsx'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import Layout from '../../common/Layout.jsx';
+import Sidebar from '../../common/Sidebar.jsx';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { apiUrl, adminToken } from '../../common/http.jsx';
 import Loader from '../../common/Loader.jsx';
 import Nostate from '../../common/Nostate.jsx';
+import { toast } from 'react-toastify';
 
 const Show = () => {
     const [products, setProducts] = useState([]);
     const [loader, setLoader] = useState(false);
+
+     const deleteProduct = async(id) => {
+        if(confirm("Are you sure to delete?")){
+            const res = await fetch(`${apiUrl}/products/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${adminToken()}`
+                }
+            })
+            .then(res => res.json())
+            .then(result => {
+                if(result.status == 200){
+                    const newProducts = products.filter(product => product.id != id);
+                    setProducts(newProducts);
+                    toast.success(result.message);
+                }   
+                else{
+                    toast.error(result.message);
+                }
+            })
+        }
+    }
 
     const fecthProduct = async () => {
         setLoader(true);
@@ -106,7 +131,7 @@ const Show = () => {
                                                                     </svg>
                                                                 </Link>
                                                             </td>
-                                                        </tr>
+                                                        </tr> 
 
                                                 )}
                                             )}
