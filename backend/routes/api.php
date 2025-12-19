@@ -42,4 +42,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('roomtypes', RoomTypeController::class);
     Route::resource('products', ProductController::class);
     Route::post('temp-images', [TempImageController::class, 'store']);
+    Route::post('save-product-images', [ProductController::class, 'saveProductImages']);
+    Route::get('change-product-default-images', [ProductController::class, 'updateProductImages']);
+    Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
 });
