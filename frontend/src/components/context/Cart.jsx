@@ -4,7 +4,7 @@ import { set } from "react-hook-form";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [cartData, setCartData] = useState([JSON.parse(localStorage.getItem('cart')) || []]);
+    const [cartData, setCartData] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
     const addToCart = (product) => {
         let updatedCart = [...cartData];

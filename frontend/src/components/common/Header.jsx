@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../assets/images/Logo.png';
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/Cart.jsx"
+import { apiUrl } from '../common/http.jsx';
 
 
 const Header = () => {

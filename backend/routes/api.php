@@ -4,7 +4,6 @@ use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\RoomTypeController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\front\AccountController;
 use App\Http\Controllers\front\OrderController;
@@ -27,18 +26,14 @@ Route::post('register', [AccountController::class, 'register']);
 Route::post('login', [AccountController::class, 'authenticate']);
 Route::get('get-shipping-front', [FrontShippingController::class, 'getShipping']);
 
-Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function() {
+Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function () {
     Route::post('save-order', [OrderController::class, 'saveOrder']);
     Route::get('get-order-details/{id}', [AccountController::class, 'getOrderDetails']);
     Route::get('get-orders', [AccountController::class, 'getOrders']);
     Route::post('update-profile', [AccountController::class, 'updateProfile']);
     Route::get('get-profile-details', [AccountController::class, 'getAccountDetails']);
+    Route::post('create-payment-intent', [OrderController::class, 'createPaymentIntent']);
 });
-
-
-// Route::group(['middleware' => 'auth:sanctum'], function () {
-//     Route::post('save-order', [OrderController::class, 'saveOrder']);
-// });
 
 
 Route::get('/user', function (Request $request) {
@@ -61,10 +56,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('change-product-default-image', [ProductController::class, 'updateDefaultImage']);
     Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
 
-    Route::get('orders', [AdminOrderController::class, 'index']);
-    Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
-    Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
+    // Route::get('orders', [AdminOrderController::class, 'index']);
+    // Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
+    // Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
 
-    Route::get('get-shipping', [ShippingController::class, 'getShipping']);
-    Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
+    // Route::get('get-shipping', [ShippingController::class, 'getShipping']);
+    // Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
 });
