@@ -19,13 +19,17 @@ const Sidebar = () => {
                         <Link to='/admin/roomtypes'>Room Types</Link>
                     </li>
                     <li>
-                        <Link to='/admin/products'>Products</Link>
+                        {/* <a href="">Products</a> */}
+                        <Link to="/admin/products">Products</Link>
                     </li>
                     <li>
-                        <a href="">Orders</a>
+                        <Link to="/admin/orders">Orders</Link>
                     </li>
                     <li>
                         <a href="">Users</a>
+                    </li>
+                    <li>
+                        <Link to="/admin/shipping">Shipping</Link>
                     </li>
                     <li>
                         <a href="">Change Password</a>

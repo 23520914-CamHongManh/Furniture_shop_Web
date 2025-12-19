@@ -6,6 +6,7 @@ import { apiUrl, adminToken } from '../../common/http.jsx';
 import { useEffect, useState } from 'react';
 import Loader from '../../common/Loader.jsx';
 import Nostate from '../../common/Nostate.jsx';
+import { toast } from 'react-toastify'
 
 const Show = () => {
     const [categories, setCategories] = useState([]);
