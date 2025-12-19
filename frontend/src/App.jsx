@@ -21,6 +21,7 @@ import { default as EditCategory } from './components/admin/category/Edit.jsx'
 import Register from './components/Register'
 import { default as UserLogin } from './components/Login'
 import Profile from './components/front/Profile'
+import MyOrders from './components/front/MyOrders'
 import { RequireAuth } from './components/RequireAuth'
 import Confirmation from './components/Confirmation'
 import ShowOrders from './components/admin/orders/ShowOrders'
@@ -62,7 +63,7 @@ function App() {
 
           <Route path='/account/orders' element={
             <RequireAuth>
-              <Profile />
+              <MyOrders />
             </RequireAuth>
           } />
 

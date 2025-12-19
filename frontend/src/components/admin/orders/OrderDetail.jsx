@@ -104,7 +104,7 @@ const OrderDetail = () => {
                                                     </div>
                                                 </div>
                                                 <div className='col-md-4'>
-                                                    <div className='text-secondary pt-5'>Payment Status</div>
+                                                    <div className='text-secondary pt-5'>Payment Method</div>
                                                     <p>COD</p>
                                                 </div>
                                             </div>
