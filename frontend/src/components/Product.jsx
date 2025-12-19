@@ -16,6 +16,7 @@ import ProductImgTwo from '../assets/images/Mens/Mens/six.jpg';
 import ProductImgThree from '../assets/images/Mens/Mens/seven.jpg';
 import { apiUrl } from './common/http';
 import { toast } from 'react-toastify';
+import { CartContext } from './context/Cart.jsx';
 
 const Product = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -23,7 +24,7 @@ const Product = () => {
     const [product, setProduct] = useState([])
     const [productImages, setProductImages] = useState([])
     const params = useParams();
-    const { addToCart } = useContext(CartContext); s
+    const { addToCart } = useContext(CartContext);
 
     const fetchProduct = () => {
         fetch(`${apiUrl}/get-product/${params.id}`, {

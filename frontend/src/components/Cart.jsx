@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from './common/Layout'
 import { Link } from 'react-router-dom'
 import ProductImg from '../assets/images/Mens/Mens/six.jpg'
 import { CartContext } from './context/Cart'
 
+
 const Cart = () => {
     const { cartData, grandTotal, subTotal, shipping } = useContext(CartContext);
+    const [qty, setQty] = useState({});
+    const handleQty = (e, itemId) => {
+        const neqQty = e.target.value;
+        setQty(prev => ({ ...prev, [itemId]: neqQty }))
+        updatedCartItem(itemId, neqQty)
+    }
+
     return (
         <Layout>
             <div className='container pb-5'>
@@ -23,6 +31,12 @@ const Cart = () => {
 
                         <table className='table'>
                             <tbody>
+                                {
+                                    cartData.length == 0 &&
+                                    <tr>
+                                        <td align='center' colspan={4} style={{ height: 200 }}>Your Cart is empty</td>
+                                    </tr>
+                                }
                                 {
                                     cartData && cartData.map(item => {
                                         return (
@@ -42,7 +56,9 @@ const Cart = () => {
                                                     </div>
                                                 </td>
                                                 <td valign='middle'>
-                                                    <input style={{ width: '100px' }} type="number" value={item.qty} className='form-control' />
+                                                    <a href="" onClick={() => deleteCartItem(item.id)}>
+                                                        <input style={{ width: '100px' }} min={1} max={10} type="number" value={qty[item.id] || item.qty} className='form-control' onChange={(e) => handleQty(e, item.id)} />
+                                                    </a>
                                                 </td>
                                                 <td valign='middle'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
@@ -59,30 +75,31 @@ const Cart = () => {
                     </div>
 
                 </div>
+                {
+                    cartData.length == 0 &&
+                    <div className='row justify-content-end'>
+                        <div className='col-md-3'>
+                            <div className='d-flex justify-content-between border-bottom pb-2'>
+                                <div>Subtotal</div>
+                                <div>${subTotal()}</div>
+                            </div>
 
-                <div className='row justify-content-end'>
-                    <div className='col-md-3'>
-                        <div className='d-flex justify-content-between border-bottom pb-2'>
-                            <div>Subtotal</div>
-                            <div>${subTotal()}</div>
-                        </div>
+                            <div className='d-flex justify-content-between border-bottom py-2'>
+                                <div>Shipping</div>
+                                <div>${shipping()} </div>
+                            </div>
 
-                        <div className='d-flex justify-content-between border-bottom py-2'>
-                            <div>Shipping</div>
-                            <div>${shipping()} </div>
-                        </div>
+                            <div className='d-flex justify-content-between border-bottom py-2'>
+                                <div><strong>Grand Total</strong></div>
+                                <div>${grandTotal()}</div>
+                            </div>
 
-                        <div className='d-flex justify-content-between border-bottom py-2'>
-                            <div><strong>Grand Total</strong></div>
-                            <div>${grandTotal()}</div>
-                        </div>
-
-                        <div className='d-flex justify-content-end py-3'>
-                            <Link to={'/checkout'} className='btn btn-primary'>Proceed To Checkout</Link>
+                            <div className='d-flex justify-content-end py-3'>
+                                <Link to={'/checkout'} className='btn btn-primary'>Proceed To Checkout</Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                }
             </div>
         </Layout>
     )
