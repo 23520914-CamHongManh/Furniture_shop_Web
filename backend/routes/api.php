@@ -4,9 +4,15 @@ use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\RoomTypeController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\front\AccountController;
+use App\Http\Controllers\front\OrderController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\front\ProductController as FrontProductController;
+use App\Http\Controllers\front\ShippingController as FrontShippingController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\front\OrderController;
@@ -20,11 +26,20 @@ Route::get('get-products', [FrontProductController::class, 'getProducts']);
 Route::get('get-product/{id}', [FrontProductController::class, 'getProduct']);
 Route::post('register', [AccountController::class, 'register']);
 Route::post('login', [AccountController::class, 'authenticate']);
+Route::get('get-shipping-front', [FrontShippingController::class, 'getShipping']);
+
+Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function() {
+    Route::post('save-order', [OrderController::class, 'saveOrder']);
+    Route::get('get-order-details/{id}', [AccountController::class, 'getOrderDetails']);
+    Route::get('get-orders', [AccountController::class, 'getOrders']);
+    Route::post('update-profile', [AccountController::class, 'updateProfile']);
+    Route::get('get-profile-details', [AccountController::class, 'getAccountDetails']);
+});
+
 
 // Route::group(['middleware' => 'auth:sanctum'], function () {
 //     Route::post('save-order', [OrderController::class, 'saveOrder']);
 // });
-
 
 
 Route::get('/user', function (Request $request) {
@@ -42,7 +57,21 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('roomtypes', RoomTypeController::class);
     Route::resource('products', ProductController::class);
     Route::post('temp-images', [TempImageController::class, 'store']);
+<<<<<<< HEAD
     Route::post('save-product-images', [ProductController::class, 'saveProductImages']);
     Route::get('change-product-default-images', [ProductController::class, 'updateProductImages']);
     Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+=======
+
+    Route::post('save-product-image', [ProductController::class, 'saveProductImage']);
+    Route::get('change-product-default-image', [ProductController::class, 'updateDefaultImage']);
+    Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+
+    Route::get('orders', [AdminOrderController::class, 'index']);
+    Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
+    Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
+
+    Route::get('get-shipping', [ShippingController::class, 'getShipping']);
+    Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
+>>>>>>> b635b0383adef7de0385b7a7307b1fc2a18d64ff
 });
