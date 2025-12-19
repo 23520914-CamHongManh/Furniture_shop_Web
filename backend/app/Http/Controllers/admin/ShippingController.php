@@ -7,9 +7,10 @@ use App\Models\ShippingCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ShoppingController extends Controller
+class ShippingController extends Controller
 {
-    public function getShipping() {
+    public function getShipping()
+    {
         $shipping = ShippingCharge::first();
         return response()->json([
             'status' => 200,
@@ -17,7 +18,8 @@ class ShoppingController extends Controller
         ], 200);
     }
 
-    public function updateShipping(Request $request) {
+    public function updateShipping(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'shipping_charge' => 'required|numeric'
         ]);
@@ -36,8 +38,8 @@ class ShoppingController extends Controller
         ]);
 
         return response()->json([
-                'status' => 200,
-                'message' => 'Shipping saved successfully.'
-            ], 200);
+            'status' => 200,
+            'message' => 'Shipping saved successfully.'
+        ], 200);
     }
 }

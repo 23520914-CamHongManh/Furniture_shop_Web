@@ -6,7 +6,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\front\AccountController;
-use App\Http\Controllers\front\OrderController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\front\ProductController as FrontProductController;
@@ -51,15 +51,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('roomtypes', RoomTypeController::class);
     Route::resource('products', ProductController::class);
     Route::post('temp-images', [TempImageController::class, 'store']);
-
-    Route::post('save-product-image', [ProductController::class, 'saveProductImage']);
-    Route::get('change-product-default-image', [ProductController::class, 'updateDefaultImage']);
+    Route::post('save-product-images', [ProductController::class, 'saveProductImages']);
+    Route::get('change-product-default-images', [ProductController::class, 'updateProductImages']);
     Route::delete('delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
 
-    // Route::get('orders', [AdminOrderController::class, 'index']);
-    // Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
-    // Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
+    Route::get('orders', [AdminOrderController::class, 'index']);
+    Route::get('orders/{id}', [AdminOrderController::class, 'detail']);
+    Route::post('update-order/{id}', [AdminOrderController::class, 'updateOrder']);
 
-    // Route::get('get-shipping', [ShippingController::class, 'getShipping']);
-    // Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
+    Route::get('get-shipping', [ShippingController::class, 'getShipping']);
+    Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
 });

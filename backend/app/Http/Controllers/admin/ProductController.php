@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
     // This method will return all the products
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->with('product_images')->get();
         return response()->json([
             'status' => 200,
             'data' => $products,
@@ -100,7 +101,7 @@ class ProductController extends Controller
     // This method will return a single  product
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('product_images')->find($id);
 
         if ($product === null) {
             return response()->json([
@@ -185,4 +186,83 @@ class ProductController extends Controller
             'message' => 'Product has been deleted successfully'
         ]);
     }
+
+    public function saveProductImages(Request $request)
+    {
+        //Validate the request
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
+        //Store the image
+        
+        $image = $request->file('image');
+        $imageName = $request->product_id.'-'.time() . '.' . $image->extension(); 
+
+
+        //Large Thumbnail
+
+        $manager = new ImageManager(Driver::class);
+        $img = $manager->read($image->getPathName());
+        $img->scaleDown(1200);
+        $img->save(public_path('uploads/products/large/' . $imageName));
+        
+        //Small Thumbnail
+        $manager = new ImageManager(Driver::class);
+        $img = $manager->read($image->getPathName());
+        $img->coverDown(400, 460);
+        $img->save(public_path('uploads/products/small/' . $imageName));
+
+        //Insert a record in product_images table
+        $productImage = new ProductImage();
+        $productImage->image = $imageName;
+        $productImage->product_id = $request->product_id;
+        $productImage->save();
+
+        return  response()->json([
+            'status' => 200,
+            'message' => 'Image has been uploaded successfully',
+            'data' => $productImage
+        ], 200);
+    }
+
+    public function updateProductImages(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $product->image = $request->image;
+        $product->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Product default image changed successfully',
+        ], 200);
+    }
+
+    public function deleteProductImage($id){
+        $productImage = ProductImage::find($id);
+        if($productImage == null){
+            return response()->json([
+                'status' => 404,
+                'message' => 'Image not found',
+        ], 400); 
+        }
+
+        File::delete(public_path('uploads/products/large/'.$productImage->image));
+        File::delete(public_path('uploads/products/small/'.$productImage->image));
+
+        $productImage->delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Product image deleted successfully',
+        ], 200);
+    }
+        
 }

@@ -154,4 +154,4 @@ const Confirmation = () => {
         </Layout>
     )
 }
-export default Confirmation
+export default Confirmation;
