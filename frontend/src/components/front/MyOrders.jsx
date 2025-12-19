@@ -7,8 +7,6 @@ import { useForm } from 'react-hook-form'
 import { adminToken, apiUrl, userToken } from '../common/http'
 import { toast } from 'react-toastify'
 import Loader from '../common/Loader'
-import React from 'react'
-import { useEffect, useState } from 'react'
 import Nostate from '../common/Nostate'
 
 const MyOrders = () => {

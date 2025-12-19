@@ -75,7 +75,12 @@ const Confirmation = () => {
                                                 order.status == 'cancelled' && <span className='badge bg-danger'>Cancelled</span>
                                             }
                                         </p>
-                                        <p><strong>Payment Method: </strong> COD</p>
+                                        <p><strong>Payment Method: </strong>
+                                            {
+                                                order.paymet_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
+                                                    : <span className='badge bg-warning'>COD</span>
+                                            }
+                                        </p>
                                     </div>
                                     <div className='col-6'>
                                         <p><strong>Customer: </strong> {order.name}</p>
@@ -149,8 +154,6 @@ const Confirmation = () => {
         </Layout>
     )
 }
-<<<<<<< HEAD
+
 export default Confirmation;
-=======
-export default Confirmation
->>>>>>> b635b0383adef7de0385b7a7307b1fc2a18d64ff
+

@@ -6,7 +6,6 @@ import { adminToken, apiUrl, userToken } from "../common/http";
 import { toast } from "react-toastify";
 import Loader from "../common/Loader";
 import Layout from "../common/Layout";
-import React from "react";
 import { useParams } from "react-router-dom";
 
 

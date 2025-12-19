@@ -28,7 +28,7 @@ import ShowOrders from './components/admin/orders/ShowOrders'
 import OrderDetail from './components/admin/orders/OrderDetail'
 
 // import MyOrders from './components/front/MyOrders'
-// import { default as UserOrderDetail } from './components/front/OrderDetail'
+import { default as UserOrderDetail } from './components/front/OrderDetail'
 import Shipping from './components/admin/shipping/Shipping'
 
 import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
@@ -74,17 +74,18 @@ function App() {
           } />
 
 
-          <Route path='/order/confirmation/:id' element={
-            <RequireAuth>
-              <Confirmation />
-            </RequireAuth>
-          } />
+            <Route path='/order/confirmation/:id' element={
+              <RequireAuth>
+                <Confirmation />
+              </RequireAuth>
+            } />
 
-          {/* <Route path='/account/orders/details:/id' element={
+
+          <Route path='/account/orders/details/:id' element={
             <RequireAuth>
               <UserOrderDetail />
             </RequireAuth>
-          } /> */}
+          } /> 
 
           {/* Admin Routes */}
           <Route path='/admin/dashboard' element={

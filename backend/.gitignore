@@ -21,4 +21,9 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+<<<<<<< HEAD
 /vendor
+=======
+/vendor
+
+>>>>>>> 1ad3da26180bc42971398c6cf7bf279b6a6cec54

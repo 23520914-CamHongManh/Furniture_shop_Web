@@ -7,9 +7,10 @@ use App\Models\ShippingCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ShoppingController extends Controller
+class ShippingController extends Controller
 {
-    public function getShipping() {
+    public function getShipping()
+    {
         $shipping = ShippingCharge::first();
         return response()->json([
             'status' => 200,

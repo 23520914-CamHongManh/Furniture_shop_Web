@@ -2,13 +2,12 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../assets/images/Logo.png';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-=======
 import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from 'react';
+import { apiUrl } from './http';
+import { CartContext } from '../context/Cart';
 
 
->>>>>>> b635b0383adef7de0385b7a7307b1fc2a18d64ff
 const Header = () => {
   const [categories, setCategories] = useState([])
   const { getQty } = useContext(CartContext)
