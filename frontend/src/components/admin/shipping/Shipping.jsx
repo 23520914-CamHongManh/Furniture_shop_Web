@@ -22,22 +22,22 @@ const Shipping = () => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${adminToken()}`
-                }         
-            })
-            .then(res => res.json(data))
-            .then(result => {
-                if (result.status == 200) {
-                    reset({
-                        shipping_charge: result.data.shipping_charge
-                    })
-                }
-                else {
-                    console.log('Some went wrong');
                 }
             })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.status == 200) {
+                        reset({
+                            shipping_charge: result.data.shipping_charge
+                        })
+                    }
+                    else {
+                        console.log('Some went wrong');
+                    }
+                })
         }
     });
-    
+
     const saveShipping = async (data) => {
         setDisable(true);
         const res = await fetch(`${apiUrl}/save-shipping`, {
@@ -49,16 +49,16 @@ const Shipping = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json(data))
-        .then(result => {
-            setDisable(false);
-            if (result.status == 200) {
-                toast.success(result.message);
-            }
-            else {
-                console.log('Some went wrong');
-            }
-        })
+            .then(res => res.json(data))
+            .then(result => {
+                setDisable(false);
+                if (result.status == 200) {
+                    toast.success(result.message);
+                }
+                else {
+                    console.log('Some went wrong');
+                }
+            })
     }
     return (
         <Layout>
@@ -91,7 +91,7 @@ const Shipping = () => {
                                             errors.shipping_charge &&
                                             <p className="invalid-feedback">{errors.shipping_charge?.message}</p>
                                         }
-                                    </div>                 
+                                    </div>
                                 </div>
                             </div>
                             <button

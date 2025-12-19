@@ -10,7 +10,7 @@ import { CartContext } from '../context/Cart';
 
 const Header = () => {
   const [categories, setCategories] = useState([])
-  const { getQty } = useContext(CartContext)
+  const { getQty } = useContext(CartContext);
   const fetchCategories = () => {
     fetch(`${apiUrl}/get-categories`, {
       method: 'GET',

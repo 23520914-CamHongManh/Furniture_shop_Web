@@ -76,7 +76,7 @@ const Cart = () => {
 
                 </div>
                 {
-                    cartData.length == 0 &&
+                    cartData.length > 0 &&
                     <div className='row justify-content-end'>
                         <div className='col-md-3'>
                             <div className='d-flex justify-content-between border-bottom pb-2'>

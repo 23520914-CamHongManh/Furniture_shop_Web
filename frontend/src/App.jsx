@@ -50,7 +50,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
-          {/* <Route path='/checkout' element={<Checkout />} /> */}
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='/account/register' element={<Register />} />
           <Route path='/account/login' element={<UserLogin />} />
           <Route path='/admin/login' element={<Login />} />
@@ -74,18 +74,18 @@ function App() {
           } />
 
 
-            <Route path='/order/confirmation/:id' element={
-              <RequireAuth>
-                <Confirmation />
-              </RequireAuth>
-            } />
+          <Route path='/order/confirmation/:id' element={
+            <RequireAuth>
+              <Confirmation />
+            </RequireAuth>
+          } />
 
 
           <Route path='/account/orders/details/:id' element={
             <RequireAuth>
               <UserOrderDetail />
             </RequireAuth>
-          } /> 
+          } />
 
           {/* Admin Routes */}
           <Route path='/admin/dashboard' element={
