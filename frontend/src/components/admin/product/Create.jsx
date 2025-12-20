@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react'
 import Layout from '../../common/Layout.jsx'
 import Sidebar from '../../common/Sidebar.jsx'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { apiUrl, adminToken } from '../../common/http.jsx';
 import { toast } from 'react-toastify';
 import JoditEditor from 'jodit-react';
+
 
 const Create = ({ placeholder }) => {
 
@@ -56,7 +57,7 @@ const Create = ({ placeholder }) => {
                 else {
                     const formErrors = result.errors;
                     Object.keys(formErrors).forEach((field) => {
-                        setError(field,{message: formErrors[field][0]});
+                        setError(field, { message: formErrors[field][0] });
                     })
                 }
 
@@ -89,13 +90,13 @@ const Create = ({ placeholder }) => {
 
             },
         })
-        .then(res => res.json())
-        .then(result => {
-            setRoomTypes(result.data);
-        })
+            .then(res => res.json())
+            .then(result => {
+                setRoomTypes(result.data);
+            })
     }
 
-    const handleFile = async(e) => {
+    const handleFile = async (e) => {
         const formData = new FormData();
         const file = e.target.files[0];
         formData.append("image", file);
@@ -109,16 +110,16 @@ const Create = ({ placeholder }) => {
             },
             body: formData
         })
-        .then(res => res.json())
-        .then(result => {
-            gallery.push(result.data.id);
-            setGallery(gallery);
+            .then(res => res.json())
+            .then(result => {
+                gallery.push(result.data.id);
+                setGallery(gallery);
 
-            galleryImages.push(result.data.image_url);
-            setGalleryImages(galleryImages);
-            setDisable(false);
-            e.target.value = ""
-        })
+                galleryImages.push(result.data.image_url);
+                setGalleryImages(galleryImages);
+                setDisable(false);
+                e.target.value = ""
+            })
     }
 
     const deleteImage = (image) => {
@@ -164,22 +165,22 @@ const Create = ({ placeholder }) => {
                                             <p className="invalid-feedback">{errors.title?.message}</p>
                                         }
                                     </div>
-                                        
+
                                     <div className='row'>
                                         <div className='col-md-6'>
                                             <div className='mb-3'>
                                                 <label className='form-label' htmlFor="" >Category</label>
                                                 <select
                                                     {
-                                                        ...register('category', {
-                                                            required: 'Please select a Category'
-                                                        })
-                                                    } 
+                                                    ...register('category', {
+                                                        required: 'Please select a Category'
+                                                    })
+                                                    }
                                                     className={`form-control ${errors.category && 'is-invalid'}`}>
                                                     <option value="">Select a Category</option>
                                                     {
                                                         categories && categories.map((category) => {
-                                                            return(<option key={`category-${category.id}`} value={category.id}>{category.name}</option>)
+                                                            return (<option key={`category-${category.id}`} value={category.id}>{category.name}</option>)
                                                         })
                                                     }
                                                 </select>
@@ -189,36 +190,36 @@ const Create = ({ placeholder }) => {
                                                 }
                                             </div>
                                         </div>
-                                        
+
                                         <div className='col-md-6'>
                                             <div className='mb-3'>
                                                 <label className='form-label' htmlFor="" >RoomType</label>
-                                                <select 
+                                                <select
                                                     {
-                                                        ...register('room_type')
-                                                    } 
-                                                className='form-control'>
+                                                    ...register('room_type')
+                                                    }
+                                                    className='form-control'>
                                                     <option value="">Select a RoomType</option>
                                                     {
-                                                    roomtypes && roomtypes.map((roomtype) => {
-                                                            return(<option key={`roomtype-${roomtype.id}`} value={roomtype.id}>{roomtype.name}</option>)
+                                                        roomtypes && roomtypes.map((roomtype) => {
+                                                            return (<option key={`roomtype-${roomtype.id}`} value={roomtype.id}>{roomtype.name}</option>)
                                                         })
                                                     }
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className='mb-3'>
                                         <label htmlFor="" className="form-label">
                                             Short Description
                                         </label>
 
                                         <textarea
-                                        {
+                                            {
                                             ...register('short_description')
-                                        } 
-                                        className='form-control' placeholder='Short Description' rows={3}></textarea>
+                                            }
+                                            className='form-control' placeholder='Short Description' rows={3}></textarea>
                                     </div>
 
                                     <div className='mb-3'>
@@ -240,14 +241,14 @@ const Create = ({ placeholder }) => {
                                         <div className="col-md-6">
                                             <div className='mb-3'>
                                                 <label htmlFor="" className='form-label'>Price</label>
-                                                <input 
+                                                <input
                                                     {
-                                                        ...register('price', {
-                                                            required: 'The price field is required'
-                                                        })
+                                                    ...register('price', {
+                                                        required: 'The price field is required'
+                                                    })
                                                     }
-                                                type="text" placeholder='Price' 
-                                                className={`form-control ${errors.price && 'is-invalid'}`}/>
+                                                    type="text" placeholder='Price'
+                                                    className={`form-control ${errors.price && 'is-invalid'}`} />
                                                 {
                                                     errors.price &&
                                                     <p className="invalid-feedback">{errors.price?.message}</p>
@@ -255,13 +256,13 @@ const Create = ({ placeholder }) => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                             <div className='mb-3'>
+                                            <div className='mb-3'>
                                                 <label htmlFor="" className='form-label'>Dicounted Price</label>
-                                                <input 
-                                                {
+                                                <input
+                                                    {
                                                     ...register('compare_price')
-                                                } 
-                                                type="text" placeholder='Dicounted Price' className='form-control'/>
+                                                    }
+                                                    type="text" placeholder='Dicounted Price' className='form-control' />
                                             </div>
                                         </div>
                                     </div>
@@ -274,12 +275,12 @@ const Create = ({ placeholder }) => {
                                                 <label htmlFor="" className='form-label'>SKU</label>
                                                 <input
                                                     {
-                                                        ...register('sku', {
-                                                            required: 'The sku field is required'
-                                                        })
-                                                    } 
-                                                type="text" placeholder='Sku' 
-                                                className={`form-control ${errors.sku && 'is-invalid'}`}/>
+                                                    ...register('sku', {
+                                                        required: 'The sku field is required'
+                                                    })
+                                                    }
+                                                    type="text" placeholder='Sku'
+                                                    className={`form-control ${errors.sku && 'is-invalid'}`} />
                                                 {
                                                     errors.sku &&
                                                     <p className="invalid-feedback">{errors.sku?.message}</p>
@@ -287,13 +288,13 @@ const Create = ({ placeholder }) => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                             <div className='mb-3'>
+                                            <div className='mb-3'>
                                                 <label htmlFor="" className='form-label'>Barcode</label>
                                                 <input
-                                                {
+                                                    {
                                                     ...register('barcode')
-                                                }  
-                                                type="text" placeholder='Barcode' className='form-control'/>
+                                                    }
+                                                    type="text" placeholder='Barcode' className='form-control' />
                                             </div>
                                         </div>
                                     </div>
@@ -302,15 +303,15 @@ const Create = ({ placeholder }) => {
                                         <div className="col-md-6">
                                             <div className='mb-3'>
                                                 <label htmlFor="" className='form-label'>Qty</label>
-                                                <input 
-                                                {
+                                                <input
+                                                    {
                                                     ...register('qty')
-                                                } 
-                                                type="text" placeholder='Qty' className='form-control'/>
+                                                    }
+                                                    type="text" placeholder='Qty' className='form-control' />
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                             <div className="mb-3">
+                                            <div className="mb-3">
                                                 <label htmlFor="" className="form-label">Status</label>
                                                 <select
                                                     {
@@ -350,12 +351,12 @@ const Create = ({ placeholder }) => {
                                     </div>
 
                                     <h3 className='py-3 border-bottom mb-3'>Gallery</h3>
-                                    
+
                                     <div className='mb-3'>
-                                            <label htmlFor="" className='form-label'>Image</label>
-                                            <input
-                                            onChange={handleFile} 
-                                            type="file" className='form-control'/>
+                                        <label htmlFor="" className='form-label'>Image</label>
+                                        <input
+                                            onChange={handleFile}
+                                            type="file" className='form-control' />
                                     </div>
 
                                     <div className='mb-3'>
@@ -365,14 +366,14 @@ const Create = ({ placeholder }) => {
                                                     return (
                                                         <div className='col-md-3' key={`image-${index}`}>
                                                             <div className='card shadow'>
-                                                                <img src={image} alt=""className='w-100'/>
+                                                                <img src={image} alt="" className='w-100' />
                                                             </div>
                                                             <button className='btn btn-danger mt-3 w-100' onClick={() => deleteImage(image)}>Delete</button>
                                                         </div>
                                                     )
                                                 })
                                             }
-                                                    
+
                                         </div>
                                     </div>
                                 </div>

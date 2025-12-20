@@ -252,3 +252,246 @@ footer{
         text-align: center;
     }
 }
+
+/* =========================================
+   STYLES FOR ABOUT PAGE
+   ========================================= */
+
+.about-page {
+    // Tinh chỉnh tiêu đề trang
+    .about-hero {
+        .title {
+            color: $primary-black;
+            position: relative;
+            display: inline-block;
+            
+            &::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 3px;
+                background-color: $primary-color;
+                margin: 10px auto 0;
+                border-radius: 2px;
+            }
+        }
+        .subtitle {
+            font-size: 1.2em; // Tăng nhẹ size chữ giới thiệu
+            line-height: 1.6;
+        }
+    }
+
+    // Phần hình ảnh câu chuyện (Story Image)
+    .story-image-wrapper {
+        // Đảm bảo ảnh luôn nằm giữa trong khung wrapper của nó
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    .story-content {
+        p {
+            font-size: 1.1em; // Chữ nội dung to hơn một chút cho dễ đọc
+        }
+    }
+
+    .team-member {
+        background-color: transparent;
+        transition: all 0.3s ease;
+
+        // Ảnh thành viên - ĐÃ CHỈNH SỬA KÍCH THƯỚC NHỎ LẠI NHƯ CARD
+        .member-img {
+            position: relative;
+            background-color: #f3f4f6;
+            // Đặt kích thước cố định nhỏ hơn cho khung ảnh, ví dụ 150x150px
+            width: 150px;  
+            height: 150px; 
+            margin: 0 auto 1.25rem; // Căn giữa và giữ khoảng cách dưới (mb-5)
+            border-radius: 10px; // Bo góc
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); // Hiệu ứng bóng đổ nhẹ
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // Đảm bảo ảnh lấp đầy khung mà không bị méo
+                object-position: top center;
+                transition: transform 0.5s ease;
+                border-radius: 10px; // Bo góc cho ảnh
+            }
+        }
+
+        // Tên thành viên
+        h4 {
+            color: $primary-black;
+            transition: color 0.3s;
+            font-size: 1.25rem !important; // Giảm nhẹ size chữ tên cho cân đối với ảnh nhỏ (tương đương text-xl)
+            margin-bottom: 0.5rem;
+        }
+
+        // Vai trò
+        p {
+            font-size: 1rem !important; // Giảm nhẹ size chữ vai trò
+            color: $primary-color;
+            margin-top: 0;
+        }
+
+        // Hiệu ứng Hover
+        &:hover {
+            .member-img {
+                img {
+                    transform: scale(1.1); 
+                }
+            }
+            
+            h4 {
+                color: $primary-color; 
+            }
+        }
+    }
+}
+
+/* =========================================
+   CONTACT PAGE - TOÀN BỘ STYLES SCSS
+   ========================================= */
+
+.contact-page {
+  /* ==================== HEADER ==================== */
+  .contact-hero {
+    .title {
+      color: $primary-black; // hoặc #000 nếu chưa có biến
+      position: relative;
+      display: inline-block;
+      font-size: 2.5rem; // 40px
+
+      @media (min-width: 768px) {
+        font-size: 3.125rem; // 50px
+      }
+
+      /* Gạch chân dưới tiêu đề */
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -24px;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: $primary-color; // màu teal chính của brand
+        border-radius: 2px;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.125rem; // 18px
+      line-height: 1.7;
+      margin-top: 2rem;
+    }
+  }
+
+  /* ==================== ICON BOX CHUNG ==================== */
+  // Áp dụng cho tất cả icon (địa chỉ, hotline, email, đồng hồ)
+  .icon-box {
+    width: 40px;
+    height: 40px;
+    background-color: rgba($primary-color, 0.08); // tương đương teal-50
+    border-radius: 8px; // rounded-lg, vuông mềm mại
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    flex-shrink: 0;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* ==================== HIỆU ỨNG HOVER ICON ==================== */
+  // Hover cho 3 mục thông tin liên hệ
+  .info-item:hover {
+    .icon-box {
+      background-color: $primary-color;
+      color: #ffffff;
+      transform: rotateY(180deg);
+    }
+  }
+
+  // Hover cho icon đồng hồ trong phần Giờ mở cửa (nếu muốn có hiệu ứng)
+  .working-hours:hover {
+    .icon-box {
+      background-color: $primary-color;
+      color: #ffffff;
+      transform: rotateY(180deg);
+    }
+  }
+
+  /* ==================== BOX GIỜ LÀM VIỆC ==================== */
+  .working-hours {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ==================== BẢN ĐỒ GOOGLE MAPS ==================== */
+  .map-column {
+    // aspect-square đã xử lý hình vuông ở JSX (Tailwind)
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+    iframe {
+      filter: grayscale(20%);
+      transition: filter 0.6s ease;
+    }
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+      iframe {
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .contact-page {
+    .grid {
+      gap: 3rem;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page {
+    .contact-hero {
+      .title {
+        font-size: 2.25rem; // 36px trên mobile
+      }
+    }
+
+    // Thu nhỏ icon một chút trên mobile cho gọn
+    .icon-box {
+      width: 36px !important;
+      height: 36px !important;
+
+      svg {
+        width: 20px !important;
+        height: 20px !important;
+      }
+    }
+
+    // Khoảng cách giữa icon và text
+    .info-item,
+    .working-hours h3 {
+      gap: 1rem !important;
+    }
+  }
+}

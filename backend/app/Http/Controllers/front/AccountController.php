@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $rules = [
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -41,7 +42,8 @@ class AccountController extends Controller
         ], 400);
     }
 
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -55,34 +57,33 @@ class AccountController extends Controller
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            
+
             $user = User::find(Auth::user()->id);
 
             $token = $user->createToken('token')->plainTextToken;
 
-                return response()->json([
-                    'status' => 200,
-                    'token' => $token,
-                    'id' => $user->id,
-                    'name' => $user->name
-                ], 200);
-
+            return response()->json([
+                'status' => 200,
+                'token' => $token,
+                'id' => $user->id,
+                'name' => $user->name
+            ], 200);
         } else {
             return response()->json([
                 'status' => 401,
                 'message' => 'Either email/password is incorrect.',
             ], 401);
         }
-
     }
 
-    public function getOrderDetails($id, Request $request) {
+    public function getOrderDetails($id, Request $request)
+    {
         $order = Order::where([
-                                'user_id' => $request->user()->id,
-                                'id' => $id
-                            ])
-                        ->with('items')
-                        ->first();
+            'user_id' => $request->user()->id,
+            'id' => $id
+        ])
+            ->with('items')
+            ->first();
         if ($order == null) {
             return response()->json([
                 'status' => 404,
@@ -97,7 +98,8 @@ class AccountController extends Controller
         }
     }
 
-    public function getOrders(Request $request) {
+    public function getOrders(Request $request)
+    {
         $orders = Order::where('user_id', $request->user()->id)->get();
 
         return response()->json([
@@ -106,7 +108,8 @@ class AccountController extends Controller
         ]);
     }
 
-    public function updateProfile(Request $request) {
+    public function updateProfile(Request $request)
+    {
 
         $user = User::find($request->user()->id);
 
@@ -120,7 +123,7 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$request->user()->id.'id,',
+            'email' => 'required|email|unique:users,email,' . $request->user()->id . 'id,',
             'city' => 'required|max:100',
             'state' => 'required|max:100',
             'zip' => 'required|max:100',
@@ -149,10 +152,10 @@ class AccountController extends Controller
             'message' => 'Profile updated successfully.',
             'data' => $user
         ], 200);
-
     }
 
-    public function getAccountDetails(Request $request) {
+    public function getAccountDetails(Request $request)
+    {
         $user = User::find($request->user()->id);
 
         if ($user == null) {
@@ -166,6 +169,6 @@ class AccountController extends Controller
                 'status' => 200,
                 'data' => $user
             ], 200);
-        }   
+        }
     }
 }

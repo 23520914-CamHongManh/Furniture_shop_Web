@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from './common/Layout'
 import Hero from './common/Hero'
 import ProductImg from '../assets/images/eight.jpg'

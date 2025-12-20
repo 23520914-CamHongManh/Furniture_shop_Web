@@ -319,7 +319,7 @@ const CheckoutForm = () => {
                                         )
                                     })
                                 }
-                                <tr>
+                                {/* <tr>
                                     <td width={100}>
                                         <img src={item.image_url} width={80} alt="" />
                                     </td>
@@ -335,7 +335,7 @@ const CheckoutForm = () => {
                                     </td>
 
 
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </table>
 
@@ -353,7 +353,7 @@ const CheckoutForm = () => {
 
                                 <div className='d-flex justify-content-between border-bottom py-2'>
                                     <div><strong>Grand Total</strong></div>
-                                    <div>${grandTotal}</div>
+                                    <div>${grandTotal()}</div>
                                 </div>
 
 

@@ -14,7 +14,7 @@ const MyOrders = () => {
     const [orders, setOrders] = useState([]);
     const [loader, setLoader] = useState(false);
 
-    const fecthOrders = async () => {
+    const fetchOrders = async () => {
         setLoader(true);
         const res = await fetch(`${apiUrl}/get-orders`, {
             method: 'GET',
@@ -24,20 +24,20 @@ const MyOrders = () => {
                 'Authorization': `Bearer ${userToken()}`
             }
         })
-        .then(res => res.json())
-        .then(result => {
-            setLoader(false);
-            if (result.status == 200) {
-                setOrders(result.data);
-            } else {
-                console.log('Some went wrong');
-            }
-        })
+            .then(res => res.json())
+            .then(result => {
+                setLoader(false);
+                if (result.status == 200) {
+                    setOrders(result.data);
+                } else {
+                    console.log('Some went wrong');
+                }
+            })
     }
 
     useEffect(() => {
         fetchOrders();
-    },[]);
+    }, []);
 
     return (
         <Layout>
@@ -54,7 +54,7 @@ const MyOrders = () => {
                         <div className='card shadow'>
                             <div className="card-body p-4">
                                 {
-                                    loader == true && <Loader/>
+                                    loader == true && <Loader />
                                 }
 
                                 {
@@ -62,7 +62,7 @@ const MyOrders = () => {
                                 }
                                 {
                                     orders && orders.length > 0 &&
-                                    <table className = 'table table-striped'>
+                                    <table className='table table-striped'>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -78,43 +78,43 @@ const MyOrders = () => {
                                             {
                                                 orders.map((order) => {
                                                     return (
-                                                    <tr key={`order-${order.id}`}>
-                                                        <td>
-                                                            <Link to = {`/account/orders/details/${order.id}`}>{order.id}</Link>
-                                                        </td>
-                                                        <td>{order.name}</td>
-                                                        <td>{order.email}</td>
-                                                        <td>${order.grand_total}t</td>
-                                                        <td>{order.created_at}</td>
-                                                        <td>
-                                                            {
-                                                                order.payment_status == 'paid' ?
-                                                                <span className = 'badge bg-success'>Paid</span> :
-                                                                <span className = 'badge bg-danger'>Not Paid</span>
-                                                            }
-                                                        </td>
-                                                        <td>
-                                                            {
-                                                                order.status == 'pending' && <span className='badge bg-warning'>Pending</span>
-                                                            }
+                                                        <tr key={`order-${order.id}`}>
+                                                            <td>
+                                                                <Link to={`/account/orders/details/${order.id}`}>{order.id}</Link>
+                                                            </td>
+                                                            <td>{order.name}</td>
+                                                            <td>{order.email}</td>
+                                                            <td>${order.grand_total}t</td>
+                                                            <td>{order.created_at}</td>
+                                                            <td>
+                                                                {
+                                                                    order.payment_status == 'paid' ?
+                                                                        <span className='badge bg-success'>Paid</span> :
+                                                                        <span className='badge bg-danger'>Not Paid</span>
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                {
+                                                                    order.status == 'pending' && <span className='badge bg-warning'>Pending</span>
+                                                                }
 
-                                                            {
-                                                                order.status == 'shipped' && <span className='badge bg-warning'>Shipped</span>
-                                                            }
+                                                                {
+                                                                    order.status == 'shipped' && <span className='badge bg-warning'>Shipped</span>
+                                                                }
 
-                                                            {
-                                                                order.status == 'delivered' && <span className='badge bg-success'>Delivered</span>
-                                                            }
+                                                                {
+                                                                    order.status == 'delivered' && <span className='badge bg-success'>Delivered</span>
+                                                                }
 
-                                                            {
-                                                                order.status == 'cancelled' && <span className='badge bg-danger'>Cancelled</span>
-                                                            }
-                                                        </td>
-                                                    </tr>   
+                                                                {
+                                                                    order.status == 'cancelled' && <span className='badge bg-danger'>Cancelled</span>
+                                                                }
+                                                            </td>
+                                                        </tr>
                                                     )
                                                 })
                                             }
-                                            
+
                                         </tbody>
                                     </table>
                                 }

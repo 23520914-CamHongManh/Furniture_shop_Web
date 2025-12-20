@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/Auth';
 
 const UserSidebar = () => {
-    const {logout} = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
     return (
         <div className="card shadow mb-5 sidebar">
             <div className="card-body p-4">

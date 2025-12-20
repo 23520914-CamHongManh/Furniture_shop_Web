@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
         } else {
             //If cart has some items
             const isProductExist = updatedCart.find(item =>
-                item.product_id === product.id
+                item.product_id == product.id
             )
             //If product already exist in cart, increase the quantity
             if (isProductExist) {

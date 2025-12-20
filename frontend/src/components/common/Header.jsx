@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 import { apiUrl } from './http';
 import { CartContext } from '../context/Cart';
-
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import cartlogo from '../../assets/images/cart.png';
 
 const Header = () => {
   const [categories, setCategories] = useState([])
@@ -34,7 +35,7 @@ const Header = () => {
   return (
     <header className='shadow'>
       <div className='bg-dark text-center py-3'>
-        <span className='text-white'>Your fashion partner</span>
+        <span className='text-white'>DXH FURNITURE WEB</span>
       </div>
       <div className='container'>
         <Navbar expand="lg" className="">
@@ -47,9 +48,16 @@ const Header = () => {
               className="ms-auto my-2 my-lg-0"
               navbarScroll
             >
-              <Nav.Link href="#action1">Mens</Nav.Link>
-              <Nav.Link href="#action2">Women</Nav.Link>
-              <Nav.Link href="#action3">Kids</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <NavDropdown title="Store" id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#action3.1">Living-room</NavDropdown.Item>
+                <NavDropdown.Item href="#action3.2">Bathroom</NavDropdown.Item>
+                <NavDropdown.Item href="#action3.3">Kitchen</NavDropdown.Item>
+                <NavDropdown.Item href="#action3.4">Bedroom</NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="/contact">Contact</Nav.Link>
+              <Nav.Link href="/about-us">About us</Nav.Link>
+
             </Nav>
             <div className='nav-right d-flex'>
               <Link to="/account" className='ms-3'>
@@ -57,7 +65,7 @@ const Header = () => {
               </Link>
               <Link to="/cart" className='ms-3'>
                 <span>{getQty()}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"></path></svg>
+                <img src={cartlogo} alt="Cart" width={28} height={28} style={{ objectFit: 'contain' }} />
               </Link>
             </div>
           </Navbar.Collapse>

@@ -14,10 +14,6 @@ import { default as ShowCategories } from './components/admin/category/Show.jsx'
 import { default as CreateCategory } from './components/admin/category/Create.jsx'
 import { default as EditCategory } from './components/admin/category/Edit.jsx'
 
-
-// import { default as ShowProducts } from './components/admin/product/Show'
-// import { default as CreateProduct } from './components/admin/product/Create'
-// import { default as EditProduct } from './components/admin/product/Edit'
 import Register from './components/Register'
 import { default as UserLogin } from './components/Login'
 import Profile from './components/front/Profile'
@@ -26,8 +22,9 @@ import { RequireAuth } from './components/RequireAuth'
 import Confirmation from './components/Confirmation'
 import ShowOrders from './components/admin/orders/ShowOrders'
 import OrderDetail from './components/admin/orders/OrderDetail'
+import About from './components/About.jsx'
+import Contact from './components/Contact.jsx'
 
-// import MyOrders from './components/front/MyOrders'
 import { default as UserOrderDetail } from './components/front/OrderDetail'
 import Shipping from './components/admin/shipping/Shipping'
 
@@ -50,10 +47,17 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/about-us' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
           <Route path='/account/register' element={<Register />} />
           <Route path='/account/login' element={<UserLogin />} />
           <Route path='/admin/login' element={<Login />} />
+
+          <Route path='/checkout' element={
+            <RequireAuth>
+              <Checkout />
+            </RequireAuth>
+          } />
 
           <Route path='/account' element={
             <RequireAuth>

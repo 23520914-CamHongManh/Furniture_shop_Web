@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from './common/Layout'
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { apiUrl } from './common/http';
 
@@ -12,32 +12,32 @@ const Register = () => {
         watch,
         formState: { errors },
     } = useForm();
-        
+
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         const res = await fetch(`${apiUrl}/register`, {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(result => {
-            console.log(result)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
 
-            if(result.status == 200){                
-                toast.success(result.message);
-                navigate('/account/login')
-            } else {
-                //toast.error(result.message);
-                const formErrors = result.errors;
-                Object.keys(formErrors).forEach((field) => {
-                    setError(field, { message: formErrors[field][0] });
-                })
-            }
-        })
+                if (result.status == 200) {
+                    toast.success(result.message);
+                    navigate('/account/login')
+                } else {
+                    toast.error(result.message);
+                    const formErrors = result.errors;
+                    Object.keys(formErrors).forEach((field) => {
+                        setError(field, { message: formErrors[field][0] });
+                    })
+                }
+            })
 
     }
 
@@ -51,15 +51,15 @@ const Register = () => {
 
                             <div className='mb-3'>
                                 <label htmlFor="" className='form-label'>Name</label>
-                                <input 
-                                {
-                                    ...register('name', { 
-                                        required: "The name field is required",                                      
+                                <input
+                                    {
+                                    ...register('name', {
+                                        required: "The name field is required",
                                     })
-                                }
-                                type="text" 
-                                className={`form-control ${errors.name && 'is-invalid'}`}
-                                placeholder='Name' />
+                                    }
+                                    type="text"
+                                    className={`form-control ${errors.name && 'is-invalid'}`}
+                                    placeholder='Name' />
                                 {
                                     errors.name && <p className='invalid-feedback'>{errors.name?.message}</p>
                                 }
@@ -67,19 +67,19 @@ const Register = () => {
 
                             <div className='mb-3'>
                                 <label htmlFor="" className='form-label'>Email</label>
-                                <input 
-                                {
-                                    ...register('email', { 
+                                <input
+                                    {
+                                    ...register('email', {
                                         required: "The email field is required",
                                         pattern: {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Invalid email address"
                                         }
                                     })
-                                }
-                                type="text" 
-                                className={`form-control ${errors.email && 'is-invalid'}`}
-                                placeholder='Email' />
+                                    }
+                                    type="text"
+                                    className={`form-control ${errors.email && 'is-invalid'}`}
+                                    placeholder='Email' />
                                 {
                                     errors.email && <p className='invalid-feedback'>{errors.email?.message}</p>
                                 }
@@ -87,15 +87,15 @@ const Register = () => {
 
                             <div className='mb-3'>
                                 <label htmlFor="" className="form-label">Password</label>
-                                <input 
-                                {
-                                    ...register("password", { 
+                                <input
+                                    {
+                                    ...register("password", {
                                         required: "The password field is required."
                                     })
-                                }
-                                type="password" 
-                                className={`form-control ${errors.password && 'is-invalid'}`}                               
-                                placeholder='Password' />
+                                    }
+                                    type="password"
+                                    className={`form-control ${errors.password && 'is-invalid'}`}
+                                    placeholder='Password' />
                                 {
                                     errors.password && <p className='invalid-feedback'>{errors.password?.message}</p>
                                 }
@@ -104,7 +104,8 @@ const Register = () => {
                             <button className='btn btn-secondary w-100'>Register</button>
 
                             <div className='d-flex justify-content-center pt-4 pb-2'>
-                                Already have an account? &nbsp;<Link to="/account/login">Login</Link>
+                                Already have an account? &nbsp;
+                                <Link to="/account/login">Login</Link>
                             </div>
 
                         </div>

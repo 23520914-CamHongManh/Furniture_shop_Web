@@ -6,8 +6,15 @@ export const adminToken = () => {
 }
 
 export const userToken = () => {
-    const data = JSON.parse(localStorage.getItem('userInfo'))
-    return data.token;
-}
+    const raw = localStorage.getItem('userInfo');
+    if (!raw) return null;
+
+    try {
+        return JSON.parse(raw)?.token || null;
+    } catch {
+        return null;
+    }
+};
 
 export const STRIPE_PUBLIC_KEY = 'pk_test_51SfujUEIThi7WV18XSY4OpxfCtPEs2wdmHeOJWMtgXuDcB904T0edjw5tHxETUE2iZTNwnKH6B0HTy0XgIzErGry00kxzOVHfS'
+

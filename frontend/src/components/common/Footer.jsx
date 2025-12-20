@@ -1,26 +1,29 @@
 import React from 'react'
-import LogoBlack from '../../assets/images/logo-white.png';
+import Logo from '../../assets/images/logo2.png';
 const Footer = () => {
   return (
     <footer className='py-5 text-white'>
       <div className='container'>
         <div className='row mb-5'>
           <div className='col-md-3 pd-4'>
-            <img src={LogoBlack} alt="" width={150} />
+            <img src={Logo} alt="" width={150} />
             <div className='pt-3 pe-5'>Details about our company our something</div>
 
           </div>
           <div className='col-md-3 pd-4'>
-            <h2 className='mb-3'>Categories</h2>
+            <h2 className='mb-3'>Room Types</h2>
             <ul>
               <li>
-                <a href="">Mens</a>
+                <a href="">Living-room</a>
               </li>
               <li>
-                <a href="">Kids</a>
+                <a href="">Bathroom</a>
               </li>
               <li>
-                <a href="">Women</a>
+                <a href="">Bedroom</a>
+              </li>
+              <li>
+                <a href="">Kitchen</a>
               </li>
             </ul>
           </div>
@@ -39,12 +42,11 @@ const Footer = () => {
             <h2 className='mb-3'>Get in Touch</h2>
             <ul>
               <li>
-                <a href="#">0388744779</a>
+                <a href="#">03.887.447.79</a>
               </li>
               <li>
-                <a href="#">23520894@gmail.com</a>
+                <a href="#">DayXaHoiEntertainment@gmail.com</a>
               </li>
-
             </ul>
           </div>
         </div>
@@ -72,7 +74,7 @@ const Footer = () => {
         </div>
         <div className='row'>
           <div className='col-md-12 text-center pt-5'>
-            <p>&copy; 2024 All Right Reserved</p>
+            <p>&copy; 2025 All Right Reserved</p>
           </div>
         </div>
       </div>
