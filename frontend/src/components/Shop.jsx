@@ -86,7 +86,7 @@ const Shop = () => {
       .then(res => res.json())
       .then(result => {
         if (result.status == 200) {
-          setBrands(result.data)
+          setRoomTypes(result.data)
         } else {
           console.log("Something went wrong");
         }

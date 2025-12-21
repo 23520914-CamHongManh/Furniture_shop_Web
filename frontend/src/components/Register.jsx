@@ -10,6 +10,7 @@ const Register = () => {
         register,
         handleSubmit,
         watch,
+        setError,
         formState: { errors },
     } = useForm();
 

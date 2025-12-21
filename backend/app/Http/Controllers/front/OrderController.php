@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\front;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class OrderController extends Controller
             $order->payment_status = $request->payment_status;
             $order->payment_method = $request->payment_method;
             $order->status = $request->status;
-            $order->user_id = $request->user()->id();
+            $order->user_id = $request->user()->id;
             $order->save();
 
             //
@@ -40,7 +41,6 @@ class OrderController extends Controller
                 $oderItem->unit_price = $item['price'];
                 $oderItem->qty = $item['qty'];
                 $oderItem->product_id = $item['product_id'];
-                $oderItem->size = $item['size'];
                 $oderItem->name = $item['title'];
                 $oderItem->save();
             }

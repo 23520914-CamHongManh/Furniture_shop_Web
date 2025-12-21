@@ -298,44 +298,29 @@ const CheckoutForm = () => {
                                 {
                                     cartData && cartData.map(item => {
                                         return (
-                                            <tr key={`cart-${item.id}`}>
+                                            <tr key={item.id}>
                                                 <td width={100}>
-                                                    <img src={ProductImg} width={80} alt="" />
+                                                    {/* <img src={item.image_url} width={80} alt="" /> */}
+                                                    <img
+                                                        src={item.image_url ? item.image_url : ProductImg}
+                                                        width={80}
+                                                        alt={item.name}
+                                                    />
                                                 </td>
                                                 <td width={600}>
                                                     <h4>Dummy Product Title</h4>
                                                     <div className='d-flex align-items-center pt-3'>
-                                                        <span>$10</span>
-                                                        <div className='ps-3'>
-                                                            {
-                                                                item.size && <button classname='btn btn-size'>{$item.size}</button>
-                                                            }
-                                                        </div>
+                                                        <span>${item.price}</span>
+                                                        {/* <div className='ps-3'>
+                                                            <button className='btn btn-size '>S</button>
+                                                        </div> */}
                                                         <div className='ps-5'>X {item.qty}</div>
                                                     </div>
                                                 </td>
-
                                             </tr>
                                         )
                                     })
                                 }
-                                {/* <tr>
-                                    <td width={100}>
-                                        <img src={item.image_url} width={80} alt="" />
-                                    </td>
-                                    <td width={600}>
-                                        <h4>Dummy Product Title</h4>
-                                        <div className='d-flex align-items-center pt-3'>
-                                            <span>${item.price}</span>
-                                            <div className='ps-3'>
-                                                <button className='btn btn-size '>S</button>
-                                            </div>
-                                            <div className='ps-5'>X 1</div>
-                                        </div>
-                                    </td>
-
-
-                                </tr> */}
                             </tbody>
                         </table>
 
@@ -362,23 +347,32 @@ const CheckoutForm = () => {
 
                         <h3 className='border-bottom pt-4 pb-3'><strong>Payment Method</strong></h3>
 
-                        <div className='pt-2'>
-                            <input type="radio"
-                                onClick={handlePaymentMethod}
-                                checked={paymentMethod == 'stripe'} value={'stripe'} />
-                            <label htmlFor="" className='form-label ps-2'>Stripe</label>
+                        <div className="pt-2">
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="stripe"
+                                checked={paymentMethod === 'stripe'}
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                            />
+                            <label className="form-label ps-2">Stripe</label>
 
-                            <input type="radio"
-                                onClick={handlePaymentMethod}
-                                checked={paymentMethod == 'cod'} value={'cod'} className='ms-3' />
-                            <label htmlFor="" className='form-label ps-2'>COD</label>
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="cod"
+                                checked={paymentMethod === 'cod'}
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                className="ms-3"
+                            />
+                            <label className="form-label ps-2">COD</label>
                         </div>
 
-                        {
-                            paymentMethod == "stripe" && <div className='border p-3'>
+                        {paymentMethod === "stripe" && stripe && (
+                            <div className="border p-3">
                                 <CardElement />
                             </div>
-                        }
+                        )}
 
                         <div className='d-flex py-3'>
                             <button disabled={loading} className='btn btn-primary'>

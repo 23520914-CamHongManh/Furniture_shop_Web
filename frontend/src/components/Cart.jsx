@@ -6,13 +6,14 @@ import { CartContext } from './context/Cart'
 
 
 const Cart = () => {
-    const { cartData, grandTotal, subTotal, shipping } = useContext(CartContext);
+    const { cartData, grandTotal, subTotal, shipping, updateCartItem, deleteCartItem } = useContext(CartContext);
     const [qty, setQty] = useState({});
     const handleQty = (e, itemId) => {
         const neqQty = e.target.value;
         setQty(prev => ({ ...prev, [itemId]: neqQty }))
-        updatedCartItem(itemId, neqQty)
+        updateCartItem(itemId, neqQty)
     }
+    console.log('cartData:', cartData);
 
     return (
         <Layout>
@@ -34,7 +35,7 @@ const Cart = () => {
                                 {
                                     cartData?.length === 0 &&
                                     <tr>
-                                        <td align='center' colspan={4} style={{ height: 200 }}>Your Cart is empty</td>
+                                        <td align='center' colSpan={4} style={{ height: 200 }}>Your Cart is empty</td>
                                     </tr>
                                 }
                                 {

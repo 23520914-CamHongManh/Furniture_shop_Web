@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Layout from './common/Layout';
 import { Rating } from 'react-simple-star-rating'
 import { Link, useParams } from 'react-router-dom';
@@ -11,9 +11,6 @@ import 'swiper/css/thumbs';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import ProductImgOne from '../assets/images/Mens/Mens/five.jpg';
-import ProductImgTwo from '../assets/images/Mens/Mens/six.jpg';
-import ProductImgThree from '../assets/images/Mens/Mens/seven.jpg';
 import { apiUrl } from './common/http';
 import { toast } from 'react-toastify';
 import { CartContext } from './context/Cart.jsx';
@@ -50,6 +47,11 @@ const Product = () => {
         toast.success("Product added to cart successfully");
     }
 
+    useEffect(() => {
+        fetchProduct();
+    }, []);
+
+    console.log("PRODUCT:", product);
 
     return (
         <Layout>

@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
     }
 
     const updateCartItem = (itemId, newQty) => {
-        let updatedCart = { ...cartData };
+        let updatedCart = [...cartData];
         updatedCart = updatedCart.map(item =>
             (item.id == itemId)
                 ? { ...item, qty: newQty }
