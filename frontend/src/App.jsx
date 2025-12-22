@@ -24,9 +24,15 @@ import ShowOrders from './components/admin/orders/ShowOrders'
 import OrderDetail from './components/admin/orders/OrderDetail'
 import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
+import ChangePassword from './components/front/ChangePassword'
+import ForgotPassword from './components/front/ForgotPassword'
+import ResetPassword from './components/front/ResetPassword'
 
 import { default as UserOrderDetail } from './components/front/OrderDetail'
 import Shipping from './components/admin/shipping/Shipping'
+import ChangePasswordAdmin from './components/admin/ChangePassword'
+import AdminForgotPassword from './components/admin/ForgotPassword'
+import AdminResetPassword from './components/admin/ResetPassword'
 
 import { default as ShowRoomTypes } from './components/admin/roomtype/Show.jsx'
 import { default as CreateRoomType } from './components/admin/roomtype/Create.jsx'
@@ -68,6 +74,15 @@ function App() {
               <Profile />
             </RequireAuth>
           } />
+
+          <Route path='/account/change-password' element={
+            <RequireAuth>
+              <ChangePassword />
+            </RequireAuth>
+          } />
+
+          <Route path='/account/forgot-password' element={<ForgotPassword />} />
+          <Route path='/account/reset-password' element={<ResetPassword />} />
 
           <Route path='/account/orders' element={
             <RequireAuth>
@@ -193,6 +208,15 @@ function App() {
               <Shipping />
             </AdminRequireAuth>
           } />
+
+          <Route path='/admin/change-password' element={
+            <AdminRequireAuth>
+              <ChangePasswordAdmin />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/forgot-password' element={<AdminForgotPassword />} />
+          <Route path='/admin/reset-password' element={<AdminResetPassword />} />
 
         </Routes>
       </BrowserRouter>

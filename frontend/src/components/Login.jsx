@@ -88,6 +88,8 @@ const Login = () => {
                                 }
                             </div>
 
+                            <div className='mb-2 text-center'><a href="/account/forgot-password">Forgot password?</a></div>
+
                             <button className='btn btn-secondary w-100'>Login</button>
 
                             <div className='d-flex justify-content-center pt-4 pb-2'>

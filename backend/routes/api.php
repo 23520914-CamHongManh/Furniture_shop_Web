@@ -26,6 +26,8 @@ Route::get('get-products', [FrontProductController::class, 'getProducts']);
 Route::get('get-product/{id}', [FrontProductController::class, 'getProduct']);
 Route::post('register', [AccountController::class, 'register']);
 Route::post('login', [AccountController::class, 'authenticate']);
+Route::post('forgot-password', [PasswordController::class, 'sendResetLinkEmail']);
+Route::post('reset-password', [PasswordController::class, 'resetPassword']);
 Route::get('get-shipping-front', [FrontShippingController::class, 'getShipping']);
 
 Route::group(['middleware' => ['auth:sanctum', 'checkUserRole']], function () {

@@ -92,6 +92,8 @@ const Login = () => {
                                 }
                             </div>
 
+                            <div className="mb-2"><a href="/admin/forgot-password">Forgot password?</a></div>
+
                             <button type ="submit" className="btn btn-secondary">Login</button>
                             
                         </div>
