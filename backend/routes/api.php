@@ -9,6 +9,7 @@ use App\Http\Controllers\front\AccountController;
 use App\Http\Controllers\front\OrderController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ShippingController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\front\ProductController as FrontProductController;
 use App\Http\Controllers\front\ShippingController as FrontShippingController;
 
@@ -63,4 +64,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('get-shipping', [ShippingController::class, 'getShipping']);
     Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
+
+    // Admin only user management
+    Route::group(['middleware' => 'checkAdminRole'], function () {
+        Route::resource('users', UserController::class);
+    });
 });

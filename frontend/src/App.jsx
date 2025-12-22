@@ -36,6 +36,10 @@ import { default as ShowProducts } from './components/admin/product/Show.jsx'
 import { default as CreateProduct } from './components/admin/product/Create.jsx'
 import { default as EditProduct } from './components/admin/product/Edit.jsx'
 
+import { default as ShowUsers } from './components/admin/user/Show.jsx'
+import { default as CreateUser } from './components/admin/user/Create.jsx'
+import { default as EditUser } from './components/admin/user/Edit.jsx'
+
 function App() {
 
   return (
@@ -137,6 +141,24 @@ function App() {
           <Route path='/admin/products' element={
             <AdminRequireAuth>
               <ShowProducts />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/users' element={
+            <AdminRequireAuth>
+              <ShowUsers />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/users/create' element={
+            <AdminRequireAuth>
+              <CreateUser />
+            </AdminRequireAuth>
+          } />
+
+          <Route path='/admin/users/edit/:id' element={
+            <AdminRequireAuth>
+              <EditUser />
             </AdminRequireAuth>
           } />
 
