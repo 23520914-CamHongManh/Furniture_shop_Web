@@ -37,9 +37,9 @@ class AccountController extends Controller
         $user->save();
 
         return response()->json([
-            'status' => 400,
+            'status' => 200,
             'message' => 'You have registered successfully.'
-        ], 400);
+        ], 200);
     }
 
     public function authenticate(Request $request)

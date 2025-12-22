@@ -2,6 +2,7 @@ import React from 'react'
 import ProductImg1 from '../../assets/images/ten.jpg'
 import { apiUrl } from '../common/http'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const FeaturedProducts = () => {
 
   const [products, setProducts] = useState([]);

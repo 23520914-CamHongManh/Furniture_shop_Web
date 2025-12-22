@@ -49,7 +49,7 @@ const Product = () => {
 
     useEffect(() => {
         fetchProduct();
-    }, []);
+    }, [params.id]);
 
     console.log("PRODUCT:", product);
 
@@ -62,7 +62,7 @@ const Product = () => {
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                                 <li className="breadcrumb-item" aria-current="page"><Link to="/shop">Shop</Link></li>
-                                <li className="breadcrumb-item active" aria-current="page">Dummy Product Title</li>
+                                <li className="breadcrumb-item active" aria-current="page">{product.title}</li>
                             </ol>
                         </nav>
                     </div>
@@ -152,7 +152,7 @@ const Product = () => {
                             ${product.price} &nbsp;
 
                             {
-                                product.compare_price && <span className='text-decoration-line-through'>&{product.compare_price}</span>
+                                product.compare_price && <span className='text-decoration-line-through'>${product.compare_price}</span>
                             }
                         </div>
 

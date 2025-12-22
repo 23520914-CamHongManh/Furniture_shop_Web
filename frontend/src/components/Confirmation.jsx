@@ -3,6 +3,7 @@ import Layout from './common/Layout'
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { apiUrl, userToken } from './common/http';
+import { useState, useEffect } from 'react';
 
 const Confirmation = () => {
     const [order, setOrder] = useState([]);
@@ -30,7 +31,7 @@ const Confirmation = () => {
     }
     useEffect(() => {
         fetchOrder();
-    }, []);
+    }, [params.id]);
     return (
         <Layout>
             <div className='container py-5'>
@@ -77,7 +78,7 @@ const Confirmation = () => {
                                         </p>
                                         <p><strong>Payment Method: </strong>
                                             {
-                                                order.paymet_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
+                                                order.payment_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
                                                     : <span className='badge bg-warning'>COD</span>
                                             }
                                         </p>
