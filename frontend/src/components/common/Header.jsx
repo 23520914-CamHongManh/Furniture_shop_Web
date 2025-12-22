@@ -49,12 +49,34 @@ const Header = () => {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <NavDropdown title="Store" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3.1">Living-room</NavDropdown.Item>
-                <NavDropdown.Item href="#action3.2">Bathroom</NavDropdown.Item>
-                <NavDropdown.Item href="#action3.3">Kitchen</NavDropdown.Item>
-                <NavDropdown.Item href="#action3.4">Bedroom</NavDropdown.Item>
+              <NavDropdown
+                title={
+                  <span
+                    onClick={() => navigate('/shop')}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Store
+                  </span>
+                }
+                id="navbarScrollingDropdown"
+              >
+                {categories?.length > 0 ? (
+                  categories.map(category => (
+                    <NavDropdown.Item
+                      key={category.id}
+                      href={`/shop?category=${category.id}`}
+                    >
+                      {category.name}
+                    </NavDropdown.Item>
+                  ))
+                ) : (
+                  <NavDropdown.Item disabled>
+                    Đang tải danh mục...
+                  </NavDropdown.Item>
+                )}
               </NavDropdown>
+
+
               <Nav.Link href="/contact">Contact</Nav.Link>
               <Nav.Link href="/about-us">About us</Nav.Link>
 
