@@ -103,7 +103,7 @@ const Show = () => {
                                             {
                                                 roomtypes.map(roomtype => {
                                                     return (
-                                                        <tr key={'roomtype-${roomtype.id}'}>
+                                                        <tr key={`roomtype-${roomtype.id}`}>
                                                             <td>{roomtype.id}</td>
                                                             <td>{roomtype.name}</td>
                                                             <td>

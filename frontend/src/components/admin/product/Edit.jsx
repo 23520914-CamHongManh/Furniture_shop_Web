@@ -467,7 +467,7 @@ const Edit = ({placeholder}) => {
                             </div>
                             <button
                                 disabled={disable}
-                                type='submit' className="btn btn-primary mt-3 mb-5">Create</button>
+                                type='submit' className="btn btn-primary mt-3 mb-5">Save</button>
                         </form>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ const ShowOrders = () => {
     }
 
     useEffect(() => {
-        fetchOrders();
+        fecthOrders();
     },[]);
 
     return (

@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@example.com',
         ]);
+
+        // Seed sample products, categories and room types
+        $this->call(\Database\Seeders\ProductSeeder::class);
     }
 }

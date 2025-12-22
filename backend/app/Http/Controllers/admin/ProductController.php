@@ -31,7 +31,7 @@ class ProductController extends Controller
         //Validate the request
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required', // sanitized and validated after
             'category' => 'required|integer',
             'sku' => 'required|unique:products,sku',
             'is_featured' => 'required|in:yes,no',
@@ -45,11 +45,24 @@ class ProductController extends Controller
             ], 400);
         }
 
+        // sanitize and validate price
+        $sanitizedPrice = $this->sanitizeNumeric($request->price);
+        if ($sanitizedPrice === null) {
+            return response()->json([
+                'status' => 400,
+                'errors' => ['price' => ['Price must be a valid number']],
+            ], 400);
+        }
+
         //Store the product
         $product = new Product();
+
         $product->title = $request->title;
-        $product->price = $request->price;
-        $product->compare_price = $request->compare_price;
+
+        // Sanitize numeric inputs that may contain thousand separators (e.g., "2.800.000")
+        $product->price = $this->sanitizeNumeric($request->price);
+        $product->compare_price = $this->sanitizeNumeric($request->compare_price);
+
         $product->category_id = $request->category;
         $product->room_type_id = $request->room_type;
         $product->sku = $request->sku;
@@ -130,7 +143,7 @@ class ProductController extends Controller
         //Validate the request
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required', // sanitized and validated after
             'category' => 'required|integer',
             'sku' => [
                 'required',
@@ -147,10 +160,22 @@ class ProductController extends Controller
             ], 400);
         }
 
+        // sanitize and validate price
+        $sanitizedPrice = $this->sanitizeNumeric($request->price);
+        if ($sanitizedPrice === null) {
+            return response()->json([
+                'status' => 400,
+                'errors' => ['price' => ['Price must be a valid number']],
+            ], 400);
+        }
+
         //Update the product
         $product->title = $request->title;
-        $product->price = $request->price;
-        $product->compare_price = $request->compare_price;
+
+        // Sanitize numeric inputs
+        $product->price = $this->sanitizeNumeric($request->price);
+        $product->compare_price = $this->sanitizeNumeric($request->compare_price);
+
         $product->category_id = $request->category;
         $product->room_type_id = $request->room_type;
         $product->sku = $request->sku;
@@ -271,6 +296,30 @@ class ProductController extends Controller
             'status' => 200,
             'message' => 'Product image deleted successfully',
         ], 200);
+    }
+
+    /**
+     * Sanitize numeric inputs that may have thousand separators or localized formats.
+     * Examples: "2.800.000" => 2800000, "1,234.56" => 1234.56
+     */
+    protected function sanitizeNumeric($value)
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        // Remove white space
+        $v = preg_replace('/\s+/', '', (string) $value);
+
+        // If the value uses dot as thousand separator (e.g., "2.800.000"), remove dots
+        // Then convert comma decimal separators to dot
+        $v = str_replace('.', '', $v);
+        $v = str_replace(',', '.', $v);
+
+        // Strip any remaining non-digit except '.' and '-'
+        $v = preg_replace('/[^0-9\.\-]/', '', $v);
+
+        return is_numeric($v) ? (float) $v : null;
     }
         
 }

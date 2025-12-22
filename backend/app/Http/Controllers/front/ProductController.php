@@ -17,23 +17,28 @@ class ProductController extends Controller
         $products = Product::orderBy('created_at', 'DESC')
             ->where('status', 1);
 
-        // Filter Products by category
+       // Filter Products by category (accepts both 'category' param)
         if (!empty($request->category)) {
             $catArray = explode(',', $request->category);
             $products = $products->whereIn('category_id', $catArray);
         }
 
-        // Filter Products by room type
-        if (!empty($request->roomtype)) {
-            $roomtypeArray = explode(',', $request->roomtype);
+       // Filter Products by room type (accepts 'roomtype' or 'roomType')
+        $roomTypeParam = $request->roomtype ?? $request->roomType ?? null;
+        if (!empty($roomTypeParam)) {
+            $roomtypeArray = explode(',', $roomTypeParam);
             $products = $products->whereIn('room_type_id', $roomtypeArray);
         }
 
-        $products = $products->get();
+        // Pagination: accept per_page and page query params (defaults)
+        $perPage = intval($request->per_page ?? $request->perPage ?? 12);
+        $page = intval($request->page ?? 1);
+
+        $paginator = $products->paginate($perPage, ['*'], 'page', $page);
 
         return response()->json([
             'status' => 200,
-            'data' => $products
+            'data' => $paginator
         ], 200);
     }
 

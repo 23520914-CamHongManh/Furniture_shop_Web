@@ -16,9 +16,15 @@ const Shop = () => {
     return category ? category.split(',') : [];
   });
   const [roomTypeChecked, setRoomTypeChecked] = useState(() => {
-    const roomType = searchParams.get('roomType');
+    const roomType = searchParams.get('roomtype');
     return roomType ? roomType.split(',') : [];
   });
+
+ // Pagination state
+  const [page, setPage] = useState(() => parseInt(searchParams.get('page')) || 1);
+  const [perPage, setPerPage] = useState(() => parseInt(searchParams.get('per_page')) || 12);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
 
   const fetchProducts = () => {
     let search = []
@@ -29,8 +35,13 @@ const Shop = () => {
     }
 
     if (roomTypeChecked.length > 0) {
-      search.push(['roomType', roomTypeChecked])
+      // send lowercase 'roomtype' to match backend
+      search.push(['roomtype', roomTypeChecked])
     }
+
+    // include pagination params
+    search.push(['page', page])
+    search.push(['per_page', perPage])
 
     if (search.length > 0) {
       params = new URLSearchParams(search)
@@ -48,13 +59,18 @@ const Shop = () => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result)
+        console.log('get-products result:', result);
         if (result.status == 200) {
-          setProducts(result.data)
+          const paginator = result.data;
+          console.log('paginator:', paginator);
+          setProducts(paginator.data || []);
+          setTotalPages(paginator.last_page || 1);
+          setTotalItems(paginator.total || 0);
         } else {
-          console.log("Something went wrong");
+          console.log("Something went wrong", result);
         }
       })
+      .catch(err => console.error('Failed to fetch products:', err))
   }
 
   const fetchCategories = () => {
@@ -95,6 +111,7 @@ const Shop = () => {
 
   const handleCategory = (e) => {
     const { checked, value } = e.target;
+    setPage(1);
     if (checked) {
       setCatChecked(pre => [...pre, value])
     } else {
@@ -104,6 +121,7 @@ const Shop = () => {
 
   const handleRoomType = (e) => {
     const { checked, value } = e.target;
+    setPage(1);
     if (checked) {
       setRoomTypeChecked(pre => [...pre, value])
     } else {
@@ -115,7 +133,7 @@ const Shop = () => {
     fetchCategories()
     fetchRoomTypes()
     fetchProducts()
-  }, [catChecked, roomTypeChecked])
+  }, [catChecked, roomTypeChecked, page, perPage])
 
   return (
     <Layout>
@@ -167,8 +185,8 @@ const Shop = () => {
                       return (
                         <li key={`roomType-${roomType.id}`} className='mb-2'>
                           <input
-                            defaultChecked={searchParams.get('roomType')
-                              ? searchParams.get('roomType').includes(roomType.id)
+                            defaultChecked={searchParams.get('roomtype')
+                              ? searchParams.get('roomtype').includes(roomType.id)
                               : false}
                             type="checkbox"
                             value={roomType.id}
@@ -213,9 +231,32 @@ const Shop = () => {
                 })
               }
 
+              {(!products || products.length === 0) && (
+                <div className="text-center py-5 w-100">
+                  <p className="mb-0">Không có sản phẩm nào phù hợp.</p>
+                  <small className="text-muted">Query: {searchParams.toString() || 'none'}</small>
+                </div>
+              )}
 
+            </div>
 
-
+            {/* Pagination */}
+            <div className='d-flex justify-content-center my-4'>
+              <nav>
+                <ul className='pagination'>
+                  <li className={`page-item ${page <= 1 ? 'disabled' : ''}`}>
+                    <button className='page-link' onClick={() => setPage(p => Math.max(p - 1, 1))}>Previous</button>
+                  </li>
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <li key={i} className={`page-item ${page === i + 1 ? 'active' : ''}`}>
+                      <button className='page-link' onClick={() => setPage(i + 1)}>{i + 1}</button>
+                    </li>
+                  ))}
+                  <li className={`page-item ${page >= totalPages ? 'disabled' : ''}`}>
+                    <button className='page-link' onClick={() => setPage(p => Math.min(p + 1, totalPages))}>Next</button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
