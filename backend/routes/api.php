@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\front\AccountController;
+use App\Http\Controllers\front\PasswordController;
 use App\Http\Controllers\front\OrderController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\ShippingController;
@@ -64,6 +65,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('get-shipping', [ShippingController::class, 'getShipping']);
     Route::post('save-shipping', [ShippingController::class, 'updateShipping']);
+
+    // Authenticated users can change their password
+    Route::post('change-password', [PasswordController::class, 'changePassword']);
 
     // Admin only user management
     Route::group(['middleware' => 'checkAdminRole'], function () {
