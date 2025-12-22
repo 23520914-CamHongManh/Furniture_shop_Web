@@ -199,10 +199,10 @@ const Shop = () => {
                         <div className='card-body pt-3'>
                           <Link to={`/product/${product.id}`}>{product.title}</Link>
                           <div className='price'>
-                            ${product.price} &nbsp;
+                            {product.price} VND &nbsp;
 
                             {
-                              product.compare_price && <span className='text-decoration-line-through'>&{product.compare_price}</span>
+                              product.compare_price && <span className='text-decoration-line-through'>{product.compare_price} VND</span>
                             }
 
                           </div>

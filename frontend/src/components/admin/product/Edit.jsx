@@ -57,6 +57,7 @@ const Edit = ({placeholder}) => {
                     category: result.data.category_id,
                     room_type: result.data.room_type_id,
                     short_description: result.data.short_description,
+                    description: result.data.description,
                     price: result.data.price,
                     compare_price: result.data.compare_price,
                     sku: result.data.sku,
@@ -313,6 +314,9 @@ const Edit = ({placeholder}) => {
                                             config={config}
                                             tabIndex={1}
                                             onBlur={newContent => setContent(newContent)}
+                                            {
+                                                ...register('description')
+                                            }
                                         />
                                     </div>
 
