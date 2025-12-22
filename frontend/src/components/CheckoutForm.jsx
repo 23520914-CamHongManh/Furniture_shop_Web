@@ -143,10 +143,12 @@ const CheckoutForm = () => {
         })
             .then(res => res.json())
             .then(result => {
+                console.log(result);
+
                 setLoading(false);
                 if (result.status == 200) {
                     localStorage.removeItem('cart');
-                    navigate(`/order/confirmation/${result.id}`)
+                    navigate(`/order/confirmation/${result.data.id}`)
                 } else {
                     toast.error(result.message)
                 }

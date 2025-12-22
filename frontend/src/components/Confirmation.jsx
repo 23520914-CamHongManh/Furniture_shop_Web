@@ -111,12 +111,7 @@ const Confirmation = () => {
                                                         </tr>
                                                     ))
                                                 }
-                                                <tr>
-                                                    <td>Product 1</td>
-                                                    <td>1</td>
-                                                    <td>$10</td>
-                                                    <td>$10</td>
-                                                </tr>
+                                                
                                             </tbody>
                                             <tfoot>
                                                 <tr>
