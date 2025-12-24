@@ -106,8 +106,8 @@ const Confirmation = () => {
                                                         <tr key={item.id}>
                                                             <td> {item.name} </td>
                                                             <td> {item.qty} </td>
-                                                            <td> {item.unit_price} </td>
-                                                            <td> {item.price} </td>
+                                                            <td> {item.unit_price}đ </td>
+                                                            <td> {item.price}đ </td>
                                                         </tr>
                                                     ))
                                                 }
@@ -116,21 +116,21 @@ const Confirmation = () => {
                                             <tfoot>
                                                 <tr>
                                                     <td className='text-end fw-bold' colSpan={3}>Subtotal</td>
-                                                    <td>${order.subtotal}</td>
+                                                    <td>{order.sub_total}đ</td>
                                                 </tr>
                                                 <tr>
                                                     <td className='text-end fw-bold' colSpan={3}>Shipping</td>
-                                                    <td>${order.shipping}</td>
+                                                    <td>{order.shipping}đ</td>
                                                 </tr>
                                                 <tr>
                                                     <td className='text-end fw-bold' colSpan={3}>Grand Total</td>
-                                                    <td>${order.grand_total}</td>
+                                                    <td>{order.grand_total}đ</td>
                                                 </tr>
                                             </tfoot>
                                         </table>
                                     </div>
                                     <div className='text-center'>
-                                        <button className='btn btn-primary'>View Order Details</button>
+                                        <Link to={`/account/orders/details/${order.id}`} className='btn btn-primary'>View Order Details</Link>
                                         <Link to={'/'} className='btn btn-outline-secondary ms-2'>Continue Shopping</Link>
                                     </div>
                                 </div>

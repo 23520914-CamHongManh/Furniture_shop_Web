@@ -46,10 +46,10 @@ const FeaturedProducts = () => {
                         {product.title}
                       </Link>
                       <div className='price'>
-                        ${product.price} &nbsp;
+                        {product.price}đ &nbsp;
 
                         {
-                          product.compare_price && <span className='text-decoration-line-through'>&{product.compare_price}</span>
+                          product.compare_price && <span className='text-decoration-line-through'>{product.compare_price}đ</span>
                         }
 
                       </div>

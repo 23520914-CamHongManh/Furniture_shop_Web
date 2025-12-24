@@ -34,8 +34,17 @@ const Sidebar = () => {
                     <li>
                         <Link to="/admin/change-password">Change Password</Link>
                     </li>
-                    <li>
-                        <a href="" onClick={logout}>Log out</a>
+                                        <li>
+                        <a href="#"
+                            onClick={(e) => {
+                            e.preventDefault();
+                            if (window.confirm("Bạn có chắc muốn đăng xuất không?")) {
+                                logout();
+                            }
+                            }}
+                        >
+                            Logout
+                        </a>
                     </li>
                 </ul>
             </div>

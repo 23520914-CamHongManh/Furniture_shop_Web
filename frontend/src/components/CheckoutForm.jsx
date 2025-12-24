@@ -312,7 +312,7 @@ const CheckoutForm = () => {
                                                 <td width={600}>
                                                     <h4>Dummy Product Title</h4>
                                                     <div className='d-flex align-items-center pt-3'>
-                                                        <span>${item.price}</span>
+                                                        <span>{item.price}đ</span>
                                                         {/* <div className='ps-3'>
                                                             <button className='btn btn-size '>S</button>
                                                         </div> */}
@@ -330,17 +330,17 @@ const CheckoutForm = () => {
                             <div className='col-md-12'>
                                 <div className='d-flex justify-content-between border-bottom pb-2'>
                                     <div>Subtotal</div>
-                                    <div>${subTotal()}</div>
+                                    <div>{subTotal()}đ</div>
                                 </div>
 
                                 <div className='d-flex justify-content-between border-bottom py-2'>
                                     <div>Shipping</div>
-                                    <div>${shipping()}</div>
+                                    <div>{shipping()}đ</div>
                                 </div>
 
                                 <div className='d-flex justify-content-between border-bottom py-2'>
                                     <div><strong>Grand Total</strong></div>
-                                    <div>${grandTotal()}</div>
+                                    <div>{grandTotal()}đ</div>
                                 </div>
 
 

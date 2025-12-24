@@ -112,7 +112,7 @@ const Show = () => {
                                                                 
                                                             </td>
                                                             <td>{product.title}</td>
-                                                            <td>{product.price}</td>
+                                                            <td>{product.price}đ</td>
                                                             <td>{product.qty}</td>
                                                             <td>{product.sku}</td>
                                                             <td>

@@ -2,16 +2,18 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../assets/images/Logo.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 import { apiUrl } from './http';
 import { CartContext } from '../context/Cart';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import cartlogo from '../../assets/images/cart.png';
 
+
 const Header = () => {
   const [categories, setCategories] = useState([])
   const { getQty } = useContext(CartContext);
+  const navigate = useNavigate();
   const fetchCategories = () => {
     fetch(`${apiUrl}/get-categories`, {
       method: 'GET',
@@ -22,7 +24,7 @@ const Header = () => {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.data == 200) {
+        if (result.status == 200) {
           setCategories(result.data)
         } else {
           console.log("Something went wrong");

@@ -18,7 +18,7 @@ const OrderDetail = () => {
     
     const fecthOrder = async () => {
         setLoader(true);
-        const res = await fetch(`${apiUrl}/get-order-details/${params.id}`, {
+        const res = await fetch(`${apiUrl}/orders/${params.id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,10 +104,15 @@ const OrderDetail = () => {
                                         </div>
                                         <div className='col-md-4'>
                                             <div className='text-secondary pt-5'>Payment Method</div>
-                                            <p>COD</p>
+                                            <p>
+                                                {
+                                                    order.payment_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
+                                                        : <span className='badge bg-warning'>COD</span>
+                                                }
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div className="row">
                                         <h3 class="pb-2 "><strong>Items</strong></h3>
                                         {
                                             items.map((item) => {
@@ -119,15 +124,10 @@ const OrderDetail = () => {
                                                                     {
                                                                         item.product.image && <img width="70" class="me-3" src={`${item.product.image_url}`} alt=""/>
                                                                     }
-                                                                    
-                                                                    <div class="d-flex flex-column">
-                                                                        <div class="mb-2"><span>{item.name}</span></div>
-                                                                        <div><button class="btn btn-size">{item.size}</button></div>
-                                                                    </div>
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div>X {item.qty}</div>
-                                                                    <div class="ps-3">${item.price}</div>
+                                                                    <div class="ps-3">{item.price}đ</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,15 +139,15 @@ const OrderDetail = () => {
                                             <div class="col-lg-12">
                                                 <div class="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                     <div>Subtotal</div>
-                                                    <div>${order.subtotal}</div>
+                                                    <div>{order.sub_total}đ</div>
                                                 </div>
                                                 <div class="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                     <div>Shipping</div>
-                                                    <div>${order.shipping}</div>
+                                                    <div>{order.shipping}đ</div>
                                                 </div>
                                                 <div class="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                     <div><strong>Grand Total</strong></div>
-                                                    <div>${order.grand_total}</div>
+                                                    <div>{order.grand_total}đ</div>
                                                 </div>
                                             </div>
                                         </div>

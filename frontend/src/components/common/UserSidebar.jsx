@@ -18,7 +18,16 @@ const UserSidebar = () => {
                         <Link to='/account/change-password'>Change Password</Link>
                     </li>
                     <li>
-                        <a href="" onClick={logout}>Logout</a>
+                        <a href="#"
+                            onClick={(e) => {
+                            e.preventDefault();
+                            if (window.confirm("Bạn có chắc muốn đăng xuất không?")) {
+                                logout();
+                            }
+                            }}
+                        >
+                            Logout
+                        </a>
                     </li>
                 </ul>
             </div>

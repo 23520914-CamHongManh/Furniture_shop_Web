@@ -70,6 +70,7 @@ const ShowOrders = () => {
                                                 <th>Date</th>
                                                 <th>Payment</th>
                                                 <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,11 +79,11 @@ const ShowOrders = () => {
                                                     return (
                                                     <tr>
                                                         <td>
-                                                            <Link to = {`/admin/orders/${order.id}`}>{order.id}</Link>
+                                                            {order.id}
                                                         </td>
                                                         <td>{order.name}</td>
                                                         <td>{order.email}</td>
-                                                        <td>${order.grand_total}t</td>
+                                                        <td>{order.grand_total}đ</td>
                                                         <td>{order.created_at}</td>
                                                         <td>
                                                             {
@@ -108,7 +109,11 @@ const ShowOrders = () => {
                                                                 order.status == 'cancelled' && <span className='badge bg-danger'>Cancelled</span>
                                                             }
                                                         </td>
+                                                        <td>
+                                                            <Link to = {`/admin/orders/${order.id}`} className = 'btn btn-sm btn-primary'>View</Link>
+                                                        </td>
                                                     </tr>   
+
                                                     )
                                                 })
                                             }

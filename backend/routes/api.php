@@ -75,4 +75,56 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['middleware' => 'checkAdminRole'], function () {
         Route::resource('users', UserController::class);
     });
+
+    // Route::get('/admin/dashboard-stats', function () {
+    // return response()->json([
+    //     'status' => 200,
+    //     'users' => \App\Models\User::count(),
+    //     'orders' => \App\Models\Order::count(),
+    //     'products' => \App\Models\Product::count(),
+    // ]);
+    // });
+
+Route::get('/admin/dashboard-stats', function () {
+
+    $months = collect(range(1, 6))->map(function($i){
+        return now()->subMonths(6 - $i)->format('M');
+    });
+
+    $usersByMonth = collect(range(1, 6))->map(function($i){
+        return \App\Models\User::whereMonth('created_at', now()->subMonths(6 - $i))
+            ->whereYear('created_at', now())
+            ->count();
+    });
+
+    $ordersByMonth = collect(range(1, 6))->map(function($i){
+        return \App\Models\Order::whereMonth('created_at', now()->subMonths(6 - $i))
+            ->whereYear('created_at', now())
+            ->count();
+    });
+
+    // ⭐⭐⭐ PRODUCTS BY MONTH
+    $productsByMonth = collect(range(1, 6))->map(function($i){
+        return \App\Models\Product::whereMonth('created_at', now()->subMonths(6 - $i))
+            ->whereYear('created_at', now())
+            ->count();
+    });
+
+    return response()->json([
+        'status' => 200,
+        'users' => \App\Models\User::count(),
+        'orders' => \App\Models\Order::count(),
+        'products' => \App\Models\Product::count(),
+
+        'chart' => [
+            'months' => $months,
+            'users' => $usersByMonth,
+            'orders' => $ordersByMonth,
+            'products' => $productsByMonth, // 👈 THÊM NÈ
+        ]
+    ]);
+});
+
+
+
 });

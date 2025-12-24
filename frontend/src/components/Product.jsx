@@ -57,7 +57,7 @@ const Product = () => {
         <Layout>
             <div className='container product-detail'>
                 <div className='row'>
-                    <div className='cod-md-12'>
+                    <div className='col-md-12'>
                         <nav aria-label="breadcrumb" className='py-4'>
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
@@ -149,10 +149,10 @@ const Product = () => {
                         </div>
 
                         <div className='price h3 py-3'>
-                            ${product.price} &nbsp;
+                            {product.price}đ &nbsp;
 
                             {
-                                product.compare_price && <span className='text-decoration-line-through'>${product.compare_price}</span>
+                                product.compare_price && <span className='text-decoration-line-through'>{product.compare_price}đ</span>
                             }
                         </div>
 

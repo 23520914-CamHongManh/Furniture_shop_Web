@@ -48,7 +48,7 @@ const Cart = () => {
                                                 <td width={600}>
                                                     <h4>{item.title}</h4>
                                                     <div className='d-flex align-items-center pt-3'>
-                                                        <span>${item.price}</span>
+                                                        <span>{item.price}đ</span>
                                                         {/* <div className='ps-3'>
                                                             {
                                                                 item.size && <button className='btn btn-size '>{item.size}</button>
@@ -81,17 +81,17 @@ const Cart = () => {
                         <div className='col-md-3'>
                             <div className='d-flex justify-content-between border-bottom pb-2'>
                                 <div>Subtotal</div>
-                                <div>${subTotal()}</div>
+                                <div>{subTotal()}đ</div>
                             </div>
 
                             <div className='d-flex justify-content-between border-bottom py-2'>
                                 <div>Shipping</div>
-                                <div>${shipping()} </div>
+                                <div>{shipping()}đ</div>
                             </div>
 
                             <div className='d-flex justify-content-between border-bottom py-2'>
                                 <div><strong>Grand Total</strong></div>
-                                <div>${grandTotal()}</div>
+                                <div>{grandTotal()}đ</div>
                             </div>
 
                             <div className='d-flex justify-content-end py-3'>

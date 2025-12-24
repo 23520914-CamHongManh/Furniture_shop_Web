@@ -146,7 +146,7 @@ const OrderDetail = () => {
                                                         <div className='text-secondary pt-5'>Payment Method</div>
                                                         <p>
                                                             {
-                                                                order.paymet_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
+                                                                order.payment_method == 'stripe' ? <span className='badge bg-success'>Stripe</span>
                                                                     : <span className='badge bg-warning'>COD</span>
                                                             }
                                                         </p>
@@ -168,12 +168,11 @@ const OrderDetail = () => {
 
                                                                                 <div className="d-flex flex-column">
                                                                                     <div className="mb-2"><span>{item.name}</span></div>
-                                                                                    <div><button className="btn btn-size">{item.size}</button></div>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="d-flex">
-                                                                                <div>X {item.qty}</div>
-                                                                                <div className="ps-3">${item.price}</div>
+                                                                                <div> {item.qty}</div>
+                                                                                <div className="ps-3">{item.price}đ</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -186,15 +185,15 @@ const OrderDetail = () => {
                                                         <div className="col-lg-12">
                                                             <div className="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                                 <div>Subtotal</div>
-                                                                <div>${order.subtotal}</div>
+                                                                <div>{order.sub_total}đ</div>
                                                             </div>
                                                             <div className="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                                 <div>Shipping</div>
-                                                                <div>${order.shipping}</div>
+                                                                <div>{order.shipping}đ</div>
                                                             </div>
                                                             <div className="d-flex  justify-content-between border-bottom pb-2 mb-2">
                                                                 <div><strong>Grand Total</strong></div>
-                                                                <div>${order.grand_total}</div>
+                                                                <div>{order.grand_total}đ</div>
                                                             </div>
                                                         </div>
                                                     </div>
